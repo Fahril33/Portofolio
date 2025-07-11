@@ -1,0 +1,19 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* poppins-regular - latin */
+@font-face {
+  /* font-display: swap; */
+  src: url("/src/styles/fonts/poppins-v23-latin-regular.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  font-family: "Poppins-Adjusted";
+  ascent-override: 75%;
+  descent-override: 10%;
+  line-gap-override: 10%;
+}
+
+body {
+  font-family: "Poppins-Adjusted", sans-serif;
+}

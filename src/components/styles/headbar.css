@@ -1,0 +1,56 @@
+.navbar {
+  background-color: #1f2235;
+  color: #e35860;
+  padding: 34px 10vw;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  width: 100%;
+}
+
+.navbar p {
+  font-size: 2rem;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+}
+
+.navbar p:hover {
+  color: #fffbfb;
+  transform: scale(1.1);
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+/* bounce effect p clicked */
+.navbar p:active {
+  transform: scale(0.9);
+  transition: all 0.3s ease;
+}
+
+.navbar ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.navbar ul li { 
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.navbar ul li:hover {
+  color: #fffbfb;
+  transform: scale(1.1);
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
