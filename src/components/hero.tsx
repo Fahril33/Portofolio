@@ -7,7 +7,9 @@ import { InfoAlert } from "./popup";
 function Hero() {
   useEffect(() => {
     InfoAlert({title: "Ehmm.. Hello!", text: "This site is under development, thankyou for coming!"});
+    console.log("Hello, I'm ORI7ON_");
   }, []); 
+
   useEffect(() => {
     if (window.particlesJS) {
       window.particlesJS("particles-js", particlesConfig);
