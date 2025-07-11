@@ -94,22 +94,22 @@ img {
 
 @media (min-width: 1024.9px) {
   img {
-    height: 40vh;
+    height: 50vh;
     transition: all 0.3s ease;
   }
 
   .name {
-    font-size: 5rem;
+    font-size: 8rem;
   }
 
   .job, .greetings{
-    font-size: 1.2rem;
+    font-size: 2.2rem;
   }
 }
 
 @media (min-width: 1440px) {
   img {
-    height: 400px;
+    height: 500px;
     transition: all 0.3s ease;
   }
 }
