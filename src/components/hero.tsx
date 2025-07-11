@@ -14,7 +14,7 @@ function Hero() {
     <div className="hero-container">
       <div id="particles-js"></div>
       <div className="hero">
-        <img src={finjakebmo} alt="finjakebmo" />
+        <img className="hero-content" src={finjakebmo} alt="finjakebmo" />
 
         <div className="hero-content text">
           <span className="greetings">Hello, I'm</span>

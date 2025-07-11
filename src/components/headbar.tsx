@@ -11,7 +11,7 @@ function Headbar() {
         <li onClick={() => window.scrollTo(0, 0)}>Projects</li>
         <li onClick={() => window.scrollTo(0, 0)}>Current</li>
         <li onClick={() => window.scrollTo(0, 0)}>Future</li>
-        <li onClick={() => window.scrollTo(0, 0)}>Contact</li>
+        <li><a href="https://instagram.com/muhammad_fchrl" target="_blank" rel="noopener noreferrer">Contact</a></li>
       </ul>
     </nav>
   );
