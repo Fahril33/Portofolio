@@ -3,7 +3,7 @@
   grid-template-columns: 1fr 1fr 1fr;
   background-color: #1f2235;
   color: #e35860;
-  padding: 0 10vw;
+  padding: auto;
   height: 100vh;
   width: 100%;
   gap: 20px;
@@ -18,6 +18,10 @@
   z-index: 10;
 }
 
+span {
+  max-width: max-content;
+}
+
 .text {
   font-size: 28px;
   font-weight: 500;
@@ -26,6 +30,8 @@
   line-height: 1;
   display: flex;
   flex-direction: column;
+  max-width: max-content;
+
 }
 
 .name {
@@ -62,24 +68,48 @@ img {
   z-index: 2;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 768.9px) {
   .hero {
-    grid-template-columns: 1fr;
-    height: 100%;
-    width: 100%;
+    grid-template-columns: 1fr 1fr;
+    justify-content: flex-end;
+    padding: 0 10vw;
   }
 
   .text {
     grid-column: 1;
     grid-row: 2;
     font-size: 1rem;
+    grid-column: span 2;
   }
 
   .name {
-    font-size: 2.3rem;
+    font-size: 120px;
   }
 
   img {
     display: none;
+    transition: all 0.3s ease;
+  }
+}
+
+@media (min-width: 1024.9px) {
+  img {
+    height: 40vh;
+    transition: all 0.3s ease;
+  }
+
+  .name {
+    font-size: 5rem;
+  }
+
+  .job, .greetings{
+    font-size: 1.2rem;
+  }
+}
+
+@media (min-width: 1440px) {
+  img {
+    height: 400px;
+    transition: all 0.3s ease;
   }
 }

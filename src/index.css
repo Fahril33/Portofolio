@@ -17,3 +17,12 @@
 body {
   font-family: "Poppins-Adjusted", sans-serif;
 }
+
+@media (min-width: 320.9px) {
+  html {
+    min-width: 320px;
+    min-height: auto;
+    overflow-x: auto;
+    overflow-y: hidden;
+  } 
+} 
