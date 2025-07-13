@@ -1,4 +1,3 @@
-import React from "react";
 import Swal from "sweetalert2";
 
 export const InfoAlert = ({title, text}: {title: string, text: string}) => {

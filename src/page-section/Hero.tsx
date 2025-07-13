@@ -1,14 +1,17 @@
 import React, { useEffect } from "react";
-import particlesConfig from "./configs/particles-config"; // tetap pakai konfigurasi
-import "./styles/hero.css";
-import finjakebmo from "../assets/atime.png";
-import { InfoAlert } from "./popup";
+import particlesConfig from "../components/configs/particles-config"; // tetap pakai konfigurasi
+import "../components/styles/heroSection.css";
+import finjakebmo from "../assets/AdventurTime.png";
+import { InfoAlert } from "../components/SweetAlert";
 
 function Hero() {
-  useEffect(() => {
-    InfoAlert({title: "Ehmm.. Hello!", text: "This site is under development, thankyou for coming!"});
-    console.log("Hello, I'm ORI7ON_");
-  }, []); 
+  // useEffect(() => {
+  //   InfoAlert({
+  //     title: "Ehmm.. Hello!",
+  //     text: "This site is under development, thankyou for coming!",
+  //   });
+  //   console.log("Hello, I'm ORI7ON_");
+  // }, []);
 
   useEffect(() => {
     if (window.particlesJS) {
