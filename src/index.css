@@ -5,4 +5,8 @@
 }
 
 /* poppins-regular - latin */
-
+@media (max-width: 768px) {
+  .swal2-popup-custom-size {
+    scale: 0.8;
+  }
+}

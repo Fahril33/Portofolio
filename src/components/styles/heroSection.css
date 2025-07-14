@@ -44,7 +44,6 @@ span {
   display: flex;
   flex-direction: column;
   max-width: max-content;
-
 }
 
 .name {
@@ -59,7 +58,7 @@ span {
   color: #fff5f5;
 }
 
-img {
+.hero img {
   display: block;
   height: 50vh;
   z-index: 10;
@@ -99,14 +98,14 @@ img {
     font-size: 2.2rem;
   }
 
-  img {
+  .hero img {
     display: none;
     transition: all 0.3s ease;
   }
 }
 
 @media (min-width: 1024.9px) {
-  img {
+  .hero img {
     height: 50vh;
     transition: all 0.3s ease;
   }
@@ -115,14 +114,73 @@ img {
     font-size: 8rem;
   }
 
-  .job, .greetings{
+  .job,
+  .greetings {
     font-size: 2.2rem;
   }
 }
 
 @media (min-width: 1440px) {
-  img {
+  .hero img {
     height: 500px;
     transition: all 0.3s ease;
+  }
+}
+
+/* Typewriter effect 1 */
+@keyframes typing {
+  0%, 3% { content: " "; }
+  4%, 7% { content: "O"; }
+  8%, 11% { content: "OR"; }
+  12%, 15% { content: "ORI"; }
+  16%, 19% { content: "ORI7"; }
+  20%, 23% { content: "ORI7O"; }
+  24%, 27% { content: "ORI7ON"; }
+  28%, 47% { content: "ORI7ON_"; } /* tampil penuh lebih lama */
+  48%, 51% { content: " "; }
+  52%, 55% { content: "F"; }
+  56%, 59% { content: "FA"; }
+  60%, 63% { content: "FAH"; }
+  64%, 67% { content: "FAHR"; }
+  68%, 71% { content: "FAHRI"; }
+  72%, 91% { content: "FAHRIL"; } /* tampil penuh lebih lama */
+  92%, 95% { content: " "; }
+  96%, 100% { content: " "; }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.typewriter {
+  --caret: currentcolor;
+  min-width: 1ch;
+  letter-spacing: 0.02em;
+}
+
+.typewriter::before {
+  content: " ";
+  animation: typing 10s infinite;
+}
+
+.typewriter::after {
+  content: "";
+  border-right: 1ch solid var(--caret);
+  animation: blink 0.6s linear infinite;
+  margin-left: 0.1ch;
+}
+
+.typewriter.nocaret::after {
+  border-right: 0;
+}
+
+@media (prefers-reduced-motion) {
+  .typewriter::before {
+    content: "FAHRIL";
+    animation: none;
+  }
+  .typewriter::after {
+    animation: none;
   }
 }

@@ -5,13 +5,12 @@ import finjakebmo from "../assets/AdventurTime.png";
 import { InfoAlert } from "../components/SweetAlert";
 
 function Hero() {
-  // useEffect(() => {
-  //   InfoAlert({
-  //     title: "Ehmm.. Hello!",
-  //     text: "This site is under development, thankyou for coming!",
-  //   });
-  //   console.log("Hello, I'm ORI7ON_");
-  // }, []);
+  useEffect(() => {
+    InfoAlert({
+      title: "Ehmm.. Hello!",
+      text: "This site is under development, thankyou for coming! Feel free to contact me for any inquiries! :)",
+    });
+  }, []);
 
   useEffect(() => {
     if (window.particlesJS) {
@@ -24,10 +23,9 @@ function Hero() {
       <div id="particles-js"></div>
       <div className="hero">
         <img className="hero-content" src={finjakebmo} alt="finjakebmo" />
-
         <div className="hero-content text">
           <span className="greetings">Hello, I'm</span>
-          <span className="name">ORI7ON_ </span>
+          <span aria-label="ORI7ON_" className="name typewriter thick"></span>
           <span className="job">FullStack Web Developer</span>
         </div>
       </div>

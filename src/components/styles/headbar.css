@@ -1,7 +1,8 @@
 .navbar {
+  font-family: 'Poppins', sans-serif;
   background-color: #1f2235;
   color: #e35860;
-  padding: 34px 10vw;
+  padding: 12px 10vw;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -12,9 +13,11 @@
   z-index: 10;
   width: 100%;
   flex-wrap: nowrap;
+  z-index: 200;
 }
 
 .navbar p {
+  user-select: none;
   font-size: 2rem;
   font-weight: 600;
   text-align: left;
@@ -43,6 +46,7 @@
 }
 
 .navbar ul li {
+  user-select: none;
   font-size: 1rem;
   font-weight: 500;
   cursor: pointer;
