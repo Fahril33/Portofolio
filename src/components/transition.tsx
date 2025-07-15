@@ -2,11 +2,9 @@ import React from "react";
 
 type TransitionProps = {
   firstcolor: string;
-  secondcolor: string;
-  thirdcolor: string;
-};
+};  
 
-function Transition({ firstcolor, secondcolor, thirdcolor }: TransitionProps) {
+function Transition({ firstcolor }: TransitionProps) {
   return (
     <div className="transition">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
