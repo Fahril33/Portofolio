@@ -7,7 +7,9 @@ import About from "./page-section/AboutSection";
 import Transition from "./components/transition";
 import ProjectSections from "./page-section/ProjectSections";
 import CurrentSection from "./page-section/CurrentSection";
-
+import FutureSections from "./page-section/FutureSections";
+import ContactSection from "./page-section/ContactSection";
+import Footer from "./page-section/footer";
 function App() {
   return (
     <div style={{ width: "100%" }}>
@@ -17,6 +19,9 @@ function App() {
       <About />      
       <ProjectSections />
       <CurrentSection />
+      <FutureSections />
+      <ContactSection />
+      <Footer />
     </div>    
   );      
 }

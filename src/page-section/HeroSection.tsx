@@ -19,7 +19,7 @@ function Hero() {
   }, []);
 
   return (
-    <div className="hero-container">
+    <div className="hero-container" id="hero">
       <div id="particles-js"></div>
       <div className="hero">
         <img className="hero-content" src={finjakebmo} alt="finjakebmo" />

@@ -4,6 +4,7 @@ import {
   PhpIcon,
   PythonIcon,
   NodeJsIcon,
+  ReactIcon,
   ExpressIcon,
   CSS3Icon,
   FigmaIcon,
@@ -15,7 +16,7 @@ import {
 
 import { CodeIgniterIcon, MongoDBIcon } from "../assets/icons/Images";
 
-import { IconType } from "../components/types/IconType";
+import { IconType } from "../assets/types/IconType";
 
 export interface ProjectItem {
   label: string;
@@ -41,6 +42,7 @@ export const projectData: ProjectCategory[] = [
     title: "Framework & Library",
     items: [
       { label: "NodeJs", Icon: NodeJsIcon },
+      { label: "React", Icon: ReactIcon },
       { label: "Express", Icon: ExpressIcon },
       { label: "CodeIgniter", Icon: CodeIgniterIcon },
     ],

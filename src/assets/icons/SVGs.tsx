@@ -13,18 +13,18 @@ export const JavascriptIcon = () => (
     <g transform="translate(-12.8,-12.8) scale(1.1,1.1)">
       <g
         fill="#f0db4f"
-        fill-rule="nonzero"
+        fillRule="nonzero"
         stroke="none"
-        stroke-width="1"
-        stroke-linecap="butt"
-        stroke-linejoin="miter"
-        stroke-miterlimit="10"
-        stroke-dasharray=""
-        stroke-dashoffset="0"
-        font-family="none"
-        font-weight="none"
-        font-size="none"
-        text-anchor="none"
+        strokeWidth="1"
+        strokeLinecap="butt"
+        strokeLinejoin="miter"
+        strokeMiterlimit="10"
+        strokeDasharray=""
+        strokeDashoffset="0"
+        fontFamily="none"
+        fontWeight="none"
+        fontSize="none"
+        textAnchor="none"
       >
         <g transform="scale(10.66667,10.66667)">
           <path d="M2.997,20.493v-16.986c0,-0.28 0.224,-0.507 0.5,-0.507h17.001c0.275,0 0.5,0.227 0.5,0.507v16.987c0,0.28 -0.225,0.507 -0.5,0.507h-17.001c-0.276,-0.001 -0.5,-0.228 -0.5,-0.508zM19.997,17.48c0,-1.507 -0.856,-2.186 -2.373,-2.84l-0.447,-0.187c-0.764,-0.346 -1.096,-0.56 -1.096,-1.107c0,-0.439 0.331,-0.773 0.853,-0.773c0.513,0 0.843,0.227 1.148,0.773l1.389,-0.906c-0.586,-1.04 -1.402,-1.44 -2.537,-1.44c-1.593,0 -2.612,1.027 -2.612,2.387c0,1.467 0.856,2.173 2.143,2.72l0.445,0.2c0.813,0.36 1.216,0.574 1.216,1.2c0,0.44 -0.532,0.68 -1.128,0.68c-0.88,0 -1.296,-0.4 -1.677,-1.027l-1.403,0.947c0.524,1.039 1.464,1.893 3.122,1.893c1.694,0 2.957,-0.893 2.957,-2.52zM12.997,17.16v-6.16h-2v5.867c0,0.934 -0.311,1.2 -0.92,1.2c-0.637,0 -1.08,-0.387 -1.371,-0.906l-1.509,0.906c0.437,0.934 1.508,1.921 2.992,1.921c1.644,-0.001 2.808,-0.908 2.808,-2.828z"></path>
@@ -45,18 +45,18 @@ export const TypescriptIcon = () => (
     <g transform="translate(3.84,3.84) scale(0.97,0.97)">
       <g
         fill="#1976d2"
-        fill-rule="nonzero"
+        fillRule="nonzero"
         stroke="none"
-        stroke-width="1"
-        stroke-linecap="butt"
-        stroke-linejoin="miter"
-        stroke-miterlimit="10"
-        stroke-dasharray=""
-        stroke-dashoffset="0"
-        font-family="none"
-        font-weight="none"
-        font-size="none"
-        text-anchor="none"
+        strokeWidth="1"
+        strokeLinecap="butt"
+        strokeLinejoin="miter"
+        strokeMiterlimit="10"
+        strokeDasharray=""
+        strokeDashoffset="0"
+        fontFamily="none"
+        fontWeight="none"
+        fontSize="none"
+        textAnchor="none"
       >
         <g transform="scale(5.12,5.12)">
           <path d="M45,4h-40c-0.553,0 -1,0.448 -1,1v40c0,0.552 0.447,1 1,1h40c0.553,0 1,-0.448 1,-1v-40c0,-0.552 -0.447,-1 -1,-1zM29,26.445h-5v15.555h-4v-15.555h-5v-3.445h14zM30.121,41.112v-4.158c0,0 2.271,1.712 4.996,1.712c2.725,0 2.62,-1.782 2.62,-2.026c0,-2.586 -7.721,-2.586 -7.721,-8.315c0,-7.791 11.25,-4.717 11.25,-4.717l-0.14,3.704c0,0 -1.887,-1.258 -4.018,-1.258c-2.131,0 -2.9,1.013 -2.9,2.096c0,2.795 7.791,2.516 7.791,8.141c0.001,8.664 -11.878,4.821 -11.878,4.821z"></path>
@@ -76,18 +76,18 @@ export const PhpIcon = () => (
   >
     <g
       fill="none"
-      fill-rule="nonzero"
+      fillRule="nonzero"
       stroke="none"
-      stroke-width="1"
-      stroke-linecap="butt"
-      stroke-linejoin="miter"
-      stroke-miterlimit="10"
-      stroke-dasharray=""
-      stroke-dashoffset="0"
-      font-family="none"
-      font-weight="none"
-      font-size="none"
-      text-anchor="none"
+      strokeWidth="1"
+      strokeLinecap="butt"
+      strokeLinejoin="miter"
+      strokeMiterlimit="10"
+      strokeDasharray=""
+      strokeDashoffset="0"
+      fontFamily="none"
+      fontWeight="none"
+      fontSize="none"
+      textAnchor="none"
     >
       <g transform="scale(5.33333,5.33333)">
         <path
@@ -153,8 +153,8 @@ export const CSS3Icon = () => (
       y2="41.109"
       gradientUnits="userSpaceOnUse"
     >
-      <stop offset="0" stop-color="#2aa4f4"></stop>
-      <stop offset="1" stop-color="#007ad9"></stop>
+      <stop offset="0" stopColor="#2aa4f4"></stop>
+      <stop offset="1" stopColor="#007ad9"></stop>
     </linearGradient>
     <path
       fill="url(#TQDriqswrKwPOniLrPT12a_7gdY5qNXaKC0_gr1)"
@@ -201,25 +201,25 @@ export const TailwindIcon = () => (
         gradientUnits="userSpaceOnUse"
         id="color-1_x7XMNGh2vdqA_gr1"
       >
-        <stop offset="0" stop-color="#00c1e0"></stop>
-        <stop offset="1" stop-color="#009bb8"></stop>
+        <stop offset="0" stopColor="#00c1e0"></stop>
+        <stop offset="1" stopColor="#009bb8"></stop>
       </linearGradient>
     </defs>
     <g transform="translate(10.24,10.24) scale(0.92,0.92)">
       <g
         fill="url(#color-1_x7XMNGh2vdqA_gr1)"
-        fill-rule="nonzero"
+        fillRule="nonzero"
         stroke="none"
-        stroke-width="1"
-        stroke-linecap="butt"
-        stroke-linejoin="miter"
-        stroke-miterlimit="10"
-        stroke-dasharray=""
-        stroke-dashoffset="0"
-        font-family="none"
-        font-weight="none"
-        font-size="none"
-        text-anchor="none"
+        strokeWidth="1"
+        strokeLinecap="butt"
+        strokeLinejoin="miter"
+        strokeMiterlimit="10"
+        strokeDasharray=""
+        strokeDashoffset="0"
+        fontFamily="none"
+        fontWeight="none"
+        fontSize="none"
+        textAnchor="none"
       >
         <g transform="scale(5.33333,5.33333)">
           <path d="M24,9.604c-5.589,0 -9.347,2.439 -11.276,7.318c-0.2,0.505 0.417,0.92 0.816,0.551c2.035,-1.882 4.322,-2.505 6.86,-1.871c1.826,0.456 3.131,1.781 4.576,3.247c2.352,2.387 5.075,5.151 11.024,5.151c5.589,0 9.348,-2.44 11.276,-7.319c0.2,-0.505 -0.417,-0.92 -0.816,-0.551c-2.035,1.882 -4.322,2.506 -6.86,1.872c-1.825,-0.456 -3.13,-1.781 -4.575,-3.247c-2.353,-2.388 -5.077,-5.151 -11.025,-5.151zM12,24c-5.589,0 -9.348,2.44 -11.276,7.319c-0.2,0.505 0.417,0.92 0.816,0.551c2.035,-1.882 4.322,-2.506 6.86,-1.871c1.825,0.457 3.13,1.781 4.575,3.246c2.353,2.388 5.077,5.152 11.025,5.152c5.589,0 9.348,-2.44 11.276,-7.319c0.2,-0.505 -0.417,-0.92 -0.816,-0.551c-2.035,1.882 -4.322,2.506 -6.86,1.871c-1.826,-0.456 -3.131,-1.781 -4.576,-3.246c-2.352,-2.388 -5.075,-5.152 -11.024,-5.152z"></path>
@@ -247,33 +247,33 @@ export const BootstrapIcon = () => (
         gradientUnits="userSpaceOnUse"
         id="color-1_g9mmSxx3SwAI_gr1"
       >
-        <stop offset="0" stop-color="#643499"></stop>
-        <stop offset="0.011" stop-color="#68369f"></stop>
-        <stop offset="0.135" stop-color="#773db6"></stop>
-        <stop offset="0.193" stop-color="#8042c3"></stop>
-        <stop offset="0.248" stop-color="#8343c8"></stop>
-        <stop offset="0.388" stop-color="#8444c9"></stop>
-        <stop offset="0.732" stop-color="#9751d2"></stop>
-        <stop offset="0.997" stop-color="#9c55d4"></stop>
-        <stop offset="0.998" stop-color="#9c55d4"></stop>
-        <stop offset="1" stop-color="#9c55d4"></stop>
+        <stop offset="0" stopColor="#643499"></stop>
+        <stop offset="0.011" stopColor="#68369f"></stop>
+        <stop offset="0.135" stopColor="#773db6"></stop>
+        <stop offset="0.193" stopColor="#8042c3"></stop>
+        <stop offset="0.248" stopColor="#8343c8"></stop>
+        <stop offset="0.388" stopColor="#8444c9"></stop>
+        <stop offset="0.732" stopColor="#9751d2"></stop>
+        <stop offset="0.997" stopColor="#9c55d4"></stop>
+        <stop offset="0.998" stopColor="#9c55d4"></stop>
+        <stop offset="1" stopColor="#9c55d4"></stop>
       </linearGradient>
     </defs>
     <g transform="translate(10.24,10.24) scale(0.92,0.92)">
       <g
         fill="none"
-        fill-rule="nonzero"
+        fillRule="nonzero"
         stroke="none"
-        stroke-width="1"
-        stroke-linecap="butt"
-        stroke-linejoin="miter"
-        stroke-miterlimit="10"
-        stroke-dasharray=""
-        stroke-dashoffset="0"
-        font-family="none"
-        font-weight="none"
-        font-size="none"
-        text-anchor="none"
+        strokeWidth="1"
+        strokeLinecap="butt"
+        strokeLinejoin="miter"
+        strokeMiterlimit="10"
+        strokeDasharray=""
+        strokeDashoffset="0"
+        fontFamily="none"
+        fontWeight="none"
+        fontSize="none"
+        textAnchor="none"
       >
         <g transform="scale(5.33333,5.33333)">
           <path
@@ -309,8 +309,8 @@ export const SupabaseIcon = () => (
         y2="36.033"
         gradientUnits="userSpaceOnUse"
       >
-        <stop offset="0" stop-color="#7dffce"></stop>
-        <stop offset="1" stop-color="#50c08d"></stop>
+        <stop offset="0" stopColor="#7dffce"></stop>
+        <stop offset="1" stopColor="#50c08d"></stop>
       </linearGradient>
       <path
         fill="url(#SVGID_1__sH0rW2TvYdr9_gr1)"
@@ -324,8 +324,8 @@ export const SupabaseIcon = () => (
         y2="19.425"
         gradientUnits="userSpaceOnUse"
       >
-        <stop offset="0" stop-color="#7dffce"></stop>
-        <stop offset="1" stop-color="#50c08d"></stop>
+        <stop offset="0" stopColor="#7dffce"></stop>
+        <stop offset="1" stopColor="#50c08d"></stop>
       </linearGradient>
       <path
         fill="url(#SVGID_00000140728474547789280440000018204366184369975479__sH0rW2TvYdr9_gr2)"
@@ -352,9 +352,9 @@ export const MySQLIcon = () => (
       y2="36.899"
       gradientUnits="userSpaceOnUse"
     >
-      <stop offset="0" stop-color="#058f92"></stop>
-      <stop offset=".5" stop-color="#038489"></stop>
-      <stop offset="1" stop-color="#026d71"></stop>
+      <stop offset="0" stopColor="#058f92"></stop>
+      <stop offset=".5" stopColor="#038489"></stop>
+      <stop offset="1" stopColor="#026d71"></stop>
     </linearGradient>
     <path
       fill="url(#eDMgMixeD6M6EYSYBuJ8ya_9nLaR5KFGjN0_gr1)"
@@ -368,8 +368,8 @@ export const MySQLIcon = () => (
       y2="35.217"
       gradientUnits="userSpaceOnUse"
     >
-      <stop offset="0" stop-color="#ff9c0f"></stop>
-      <stop offset=".813" stop-color="#d67e00"></stop>
+      <stop offset="0" stopColor="#ff9c0f"></stop>
+      <stop offset=".813" stopColor="#d67e00"></stop>
     </linearGradient>
     <path
       fill="url(#eDMgMixeD6M6EYSYBuJ8yb_9nLaR5KFGjN0_gr2)"
@@ -383,9 +383,9 @@ export const MySQLIcon = () => (
       y2="26.75"
       gradientUnits="userSpaceOnUse"
     >
-      <stop offset="0" stop-color="#058f92"></stop>
-      <stop offset=".5" stop-color="#038489"></stop>
-      <stop offset="1" stop-color="#026d71"></stop>
+      <stop offset="0" stopColor="#058f92"></stop>
+      <stop offset=".5" stopColor="#038489"></stop>
+      <stop offset="1" stopColor="#026d71"></stop>
     </linearGradient>
     <path
       fill="url(#eDMgMixeD6M6EYSYBuJ8yc_9nLaR5KFGjN0_gr3)"
@@ -440,18 +440,18 @@ export const ReactIcon = () => (
     <g transform="translate(10.24,10.24) scale(0.92,0.92)">
       <g
         fill="#339af0"
-        fill-rule="nonzero"
+        fillRule="nonzero"
         stroke="none"
-        stroke-width="1"
-        stroke-linecap="butt"
-        stroke-linejoin="miter"
-        stroke-miterlimit="10"
-        stroke-dasharray=""
-        stroke-dashoffset="0"
-        font-family="none"
-        font-weight="none"
-        font-size="none"
-        text-anchor="none"
+        strokeWidth="1"
+        strokeLinecap="butt"
+        strokeLinejoin="miter"
+        strokeMiterlimit="10"
+        strokeDasharray=""
+        strokeDashoffset="0"
+        fontFamily="none"
+        fontWeight="none"
+        fontSize="none"
+        textAnchor="none"
       >
         <g transform="scale(5.12,5.12)">
           <path d="M34.55469,3.98438c-0.77969,-0.02622 -1.5958,0.10972 -2.41406,0.375c-1.63652,0.53057 -3.35142,1.56451 -5.11133,2.99609c-0.68971,0.56104 -1.38567,1.20236 -2.08398,1.88281c-0.68291,-0.66318 -1.36458,-1.28924 -2.03906,-1.83789c-1.75849,-1.43043 -3.46875,-2.46282 -5.10156,-2.99219c-1.63281,-0.52936 -3.25746,-0.54577 -4.5918,0.22461c-1.33433,0.77038 -2.13227,2.18454 -2.49024,3.86328c-0.35796,1.67874 -0.32048,3.6779 0.03906,5.91602c0.12489,0.7774 0.30495,1.59297 0.50781,2.42383c-0.76244,0.23107 -1.50285,0.47402 -2.18945,0.74219c-2.0721,0.80931 -3.78663,1.77754 -5.03516,2.92969c-1.24853,1.15215 -2.05469,2.55049 -2.05469,4.08594c0,1.53545 0.80616,2.93183 2.05469,4.08398c1.24852,1.15215 2.96306,2.12233 5.03516,2.93164c0.73417,0.28675 1.52904,0.54495 2.34961,0.78906c-0.29516,1.10284 -0.53429,2.17303 -0.69727,3.1875c-0.35984,2.23992 -0.39783,4.23933 -0.03906,5.92187c0.35878,1.68255 1.15712,3.10472 2.49805,3.87891c1.34093,0.77419 2.97286,0.75518 4.60938,0.22461c1.63652,-0.53057 3.34947,-1.56256 5.10938,-2.99414c0.68336,-0.55587 1.3746,-1.18998 2.06641,-1.86328c0.6951,0.67698 1.38977,1.3147 2.07617,1.87305c1.75849,1.43043 3.4707,2.46282 5.10352,2.99219c1.63281,0.52936 3.25551,0.54577 4.58984,-0.22461c1.33433,-0.77038 2.13227,-2.18454 2.49023,-3.86328c0.35796,-1.67874 0.31853,-3.6779 -0.04102,-5.91602c-0.16341,-1.01722 -0.4027,-2.08901 -0.69922,-3.19531c0.84768,-0.25006 1.66765,-0.5152 2.42383,-0.81055c2.0721,-0.80931 3.78663,-1.77949 5.03516,-2.93164c1.24853,-1.15215 2.05469,-2.54854 2.05469,-4.08398c0,-1.53545 -0.80616,-2.93379 -2.05469,-4.08594c-1.24853,-1.15215 -2.96306,-2.12037 -5.03516,-2.92969c-0.69645,-0.27202 -1.44823,-0.51813 -2.22266,-0.75195c0.20451,-0.83595 0.38608,-1.65737 0.51172,-2.43945c0.35983,-2.23991 0.39784,-4.24128 0.03906,-5.92383c-0.35877,-1.68255 -1.15907,-3.10277 -2.5,-3.87695c-0.67047,-0.38709 -1.41367,-0.57535 -2.19336,-0.60156zM34.46289,6.01953c0.48926,0.01338 0.90664,0.12981 1.26367,0.33594c0.71406,0.41226 1.24186,1.21462 1.52344,2.53516c0.28158,1.32053 0.27185,3.1047 -0.06055,5.17383c-0.11381,0.70843 -0.27905,1.45924 -0.4668,2.22852c-2.04495,-0.49214 -4.28569,-0.85754 -6.67383,-1.07227c-1.19973,-1.66224 -2.43287,-3.17433 -3.67578,-4.51758c0.65714,-0.64146 1.31002,-1.2414 1.94727,-1.75977c1.62571,-1.32243 3.16481,-2.22226 4.44922,-2.63867c0.6422,-0.20821 1.2041,-0.29854 1.69336,-0.28516zM15.48633,6.02539c0.49209,-0.01374 1.05516,0.07635 1.69922,0.28516c1.28811,0.41761 2.8299,1.31705 4.45703,2.64063c0.62431,0.50784 1.26287,1.0947 1.90625,1.7207c-1.25187,1.35391 -2.49365,2.88183 -3.70117,4.55859c-2.37965,0.21869 -4.6124,0.58756 -6.64844,1.08203c-0.18653,-0.7656 -0.34958,-1.51341 -0.46289,-2.21875c-0.33269,-2.07092 -0.34099,-3.8573 -0.05859,-5.18164c0.28239,-1.32434 0.8145,-2.13081 1.53516,-2.54687c0.36032,-0.20803 0.78135,-0.32611 1.27344,-0.33984zM24.97656,12.14258c0.8145,0.8864 1.6295,1.85672 2.4375,2.90039c-0.79403,-0.03311 -1.59777,-0.05274 -2.41406,-0.05274c-0.83254,0 -1.65159,0.02026 -2.46094,0.05469c0.80829,-1.04462 1.62269,-2.01518 2.4375,-2.90234zM25,17.00977c1.35989,0 2.68535,0.05588 3.97461,0.15039c0.88712,1.27416 1.75404,2.6259 2.58008,4.05664c0.72582,1.25715 1.38264,2.51237 1.98047,3.75195c-0.60414,1.25603 -1.27197,2.52822 -2.00781,3.80273c-0.64774,1.12191 -1.32415,2.18746 -2.01172,3.21484c-1.45631,0.12172 -2.96532,0.18945 -4.51562,0.18945c-1.58762,0 -3.13054,-0.07175 -4.61914,-0.19922c-0.67612,-1.01261 -1.34112,-2.06398 -1.97852,-3.16797c-0.73416,-1.2716 -1.39877,-2.53951 -2.00195,-3.79297c0.60572,-1.26053 1.27331,-2.53745 2.01172,-3.81641c0.82171,-1.42324 1.6861,-2.76716 2.56836,-4.03516c1.30314,-0.09664 2.64398,-0.1543 4.01953,-0.1543zM31.55078,17.41016c1.64775,0.20566 3.19487,0.49138 4.63477,0.83398c-0.42742,1.40115 -0.95389,2.86467 -1.5918,4.375c-0.41418,-0.79842 -0.84315,-1.59956 -1.30664,-2.40234c-0.56138,-0.97234 -1.14508,-1.90084 -1.73633,-2.80664zM18.34375,17.42578c-0.5791,0.88932 -1.14891,1.7988 -1.69922,2.75195c-0.46944,0.81309 -0.90731,1.625 -1.32617,2.43359c-0.6324,-1.50125 -1.1557,-2.95645 -1.58008,-4.34961c1.42972,-0.34336 2.96848,-0.62791 4.60547,-0.83594zM38.16406,18.77539c0.70888,0.21449 1.3935,0.43832 2.02148,0.68359c1.91015,0.74606 3.4211,1.62951 4.40039,2.5332c0.97929,0.90369 1.4043,1.76551 1.4043,2.60156c0,0.83605 -0.42501,1.69787 -1.4043,2.60156c-0.97929,0.90369 -2.49024,1.78714 -4.40039,2.5332c-0.69785,0.27256 -1.46459,0.51973 -2.26172,0.75391c-0.56863,-1.75878 -1.29442,-3.59365 -2.1582,-5.4668c0.99316,-2.15054 1.79546,-4.24734 2.39844,-6.24023zM11.80273,18.78516c0.59606,1.97294 1.38812,4.04905 2.36719,6.17773c-0.86945,1.88406 -1.59883,3.72936 -2.16992,5.49805c-0.76904,-0.22802 -1.50979,-0.46849 -2.18555,-0.73242c-1.91015,-0.74606 -3.4211,-1.62951 -4.40039,-2.5332c-0.97929,-0.90369 -1.4043,-1.76551 -1.4043,-2.60156c0,-0.83605 0.42501,-1.69787 1.4043,-2.60156c0.97929,-0.90369 2.49024,-1.78714 4.40039,-2.5332c0.61832,-0.2415 1.29146,-0.46215 1.98828,-0.67383zM25,20c-2.74958,0 -5,2.25042 -5,5c0,2.74958 2.25042,5 5,5c2.74958,0 5,-2.25042 5,-5c0,-2.74958 -2.25042,-5 -5,-5zM25,22c1.6687,0 3,1.3313 3,3c0,1.6687 -1.3313,3 -3,3c-1.6687,0 -3,-1.3313 -3,-3c0,-1.6687 1.3313,-3 3,-3zM34.61914,27.36328c0.52446,1.24121 0.98032,2.45577 1.36328,3.62695c-1.20261,0.27886 -2.48313,0.51382 -3.83008,0.69922c0.38773,-0.61867 0.77064,-1.24888 1.14453,-1.89648c0.46868,-0.81178 0.90397,-1.62249 1.32227,-2.42969zM15.3418,27.36523c0.42051,0.8122 0.85847,1.62652 1.33008,2.44336c0.36919,0.63946 0.74618,1.26377 1.12891,1.875c-1.34296,-0.18622 -2.61955,-0.42199 -3.81836,-0.70117c0.38123,-1.16761 0.83732,-2.37963 1.35938,-3.61719zM13.40625,32.92383c1.80982,0.42874 3.77147,0.75808 5.85156,0.97266c1.38884,2.00876 2.83486,3.81281 4.29102,5.39063c-0.65102,0.63475 -1.29626,1.23047 -1.92773,1.74414c-1.62571,1.32243 -3.16677,2.22031 -4.45117,2.63672c-1.28441,0.41641 -2.24298,0.36148 -2.95703,-0.05078c-0.71406,-0.41226 -1.2399,-1.21462 -1.52149,-2.53516c-0.28158,-1.32053 -0.2738,-3.10275 0.05859,-5.17187c0.15079,-0.93866 0.37615,-1.94378 0.65625,-2.98633zM36.56055,32.93164c0.28224,1.04835 0.50854,2.05817 0.66016,3.00195c0.33269,2.07092 0.34099,3.85535 0.05859,5.17969c-0.28239,1.32434 -0.81255,2.13276 -1.5332,2.54883c-0.72065,0.41607 -1.6865,0.4723 -2.97461,0.05469c-1.28811,-0.41761 -2.82991,-1.319 -4.45703,-2.64258c-0.63601,-0.51736 -1.28573,-1.11596 -1.94141,-1.75586c1.46562,-1.58377 2.92242,-3.3976 4.32031,-5.41797c2.08534,-0.21314 4.05243,-0.54052 5.86719,-0.96875zM21.86719,34.10156c1.02676,0.05596 2.06706,0.09375 3.13281,0.09375c1.0305,0 2.03706,-0.03552 3.03125,-0.08789c-1.01629,1.37117 -2.05222,2.61773 -3.08398,3.74023c-1.03114,-1.1249 -2.06512,-2.37369 -3.08008,-3.74609z"></path>
@@ -478,8 +478,8 @@ export const ExpressIcon = () => (
       y2="33.216"
       gradientUnits="userSpaceOnUse"
     >
-      <stop offset="0" stop-color="#6d7479"></stop>
-      <stop offset="1" stop-color="#323538"></stop>
+      <stop offset="0" stopColor="#6d7479"></stop>
+      <stop offset="1" stopColor="#323538"></stop>
     </linearGradient>
     <path
       fill="url(#Xfeb2ANkiLrn2PxL5jJHLa_PZQVBAxaueDJ_gr1)"
@@ -506,11 +506,11 @@ export const NodeJsIcon = () => (
         y1="17.487%"
         y2="89.755%"
       >
-        <stop offset="0%" stop-color="#41873F"></stop>
-        <stop offset="32.88%" stop-color="#418B3D"></stop>
-        <stop offset="63.52%" stop-color="#419637"></stop>
-        <stop offset="93.19%" stop-color="#3FA92D"></stop>
-        <stop offset="100%" stop-color="#3FAE2A"></stop>
+        <stop offset="0%" stopColor="#41873F"></stop>
+        <stop offset="32.88%" stopColor="#418B3D"></stop>
+        <stop offset="63.52%" stopColor="#419637"></stop>
+        <stop offset="93.19%" stopColor="#3FA92D"></stop>
+        <stop offset="100%" stopColor="#3FAE2A"></stop>
       </linearGradient>
       <linearGradient
         id="d"
@@ -519,10 +519,10 @@ export const NodeJsIcon = () => (
         y1="55.169%"
         y2="-18.306%"
       >
-        <stop offset="13.76%" stop-color="#41873F"></stop>
-        <stop offset="40.32%" stop-color="#54A044"></stop>
-        <stop offset="71.36%" stop-color="#66B848"></stop>
-        <stop offset="90.81%" stop-color="#6CC04A"></stop>
+        <stop offset="13.76%" stopColor="#41873F"></stop>
+        <stop offset="40.32%" stopColor="#54A044"></stop>
+        <stop offset="71.36%" stopColor="#66B848"></stop>
+        <stop offset="90.81%" stopColor="#6CC04A"></stop>
       </linearGradient>
       <linearGradient
         id="e"
@@ -531,10 +531,10 @@ export const NodeJsIcon = () => (
         y1="13.43%"
         y2="13.43%"
       >
-        <stop offset="9.192%" stop-color="#6CC04A"></stop>
-        <stop offset="28.64%" stop-color="#66B848"></stop>
-        <stop offset="59.68%" stop-color="#54A044"></stop>
-        <stop offset="86.24%" stop-color="#41873F"></stop>
+        <stop offset="9.192%" stopColor="#6CC04A"></stop>
+        <stop offset="28.64%" stopColor="#66B848"></stop>
+        <stop offset="59.68%" stopColor="#54A044"></stop>
+        <stop offset="86.24%" stopColor="#41873F"></stop>
       </linearGradient>
       <linearGradient
         id="f"
@@ -543,16 +543,16 @@ export const NodeJsIcon = () => (
         y1="49.997%"
         y2="49.997%"
       >
-        <stop offset="9.192%" stop-color="#6CC04A"></stop>
-        <stop offset="28.64%" stop-color="#66B848"></stop>
-        <stop offset="59.68%" stop-color="#54A044"></stop>
-        <stop offset="86.24%" stop-color="#41873F"></stop>
+        <stop offset="9.192%" stopColor="#6CC04A"></stop>
+        <stop offset="28.64%" stopColor="#66B848"></stop>
+        <stop offset="59.68%" stopColor="#54A044"></stop>
+        <stop offset="86.24%" stopColor="#41873F"></stop>
       </linearGradient>
       <linearGradient id="g" x1="-9713.77%" x2="27.93%" y1="36.21%" y2="36.21%">
-        <stop offset="9.192%" stop-color="#6CC04A"></stop>
-        <stop offset="28.64%" stop-color="#66B848"></stop>
-        <stop offset="59.68%" stop-color="#54A044"></stop>
-        <stop offset="86.24%" stop-color="#41873F"></stop>
+        <stop offset="9.192%" stopColor="#6CC04A"></stop>
+        <stop offset="28.64%" stopColor="#66B848"></stop>
+        <stop offset="59.68%" stopColor="#54A044"></stop>
+        <stop offset="86.24%" stopColor="#41873F"></stop>
       </linearGradient>
       <linearGradient
         id="h"
@@ -561,10 +561,10 @@ export const NodeJsIcon = () => (
         y1="50.275%"
         y2="50.275%"
       >
-        <stop offset="9.192%" stop-color="#6CC04A"></stop>
-        <stop offset="28.64%" stop-color="#66B848"></stop>
-        <stop offset="59.68%" stop-color="#54A044"></stop>
-        <stop offset="86.24%" stop-color="#41873F"></stop>
+        <stop offset="9.192%" stopColor="#6CC04A"></stop>
+        <stop offset="28.64%" stopColor="#66B848"></stop>
+        <stop offset="59.68%" stopColor="#54A044"></stop>
+        <stop offset="86.24%" stopColor="#41873F"></stop>
       </linearGradient>
       <linearGradient
         id="i"
@@ -573,11 +573,11 @@ export const NodeJsIcon = () => (
         y1="-211.069%"
         y2="201.605%"
       >
-        <stop offset="0%" stop-color="#41873F"></stop>
-        <stop offset="32.88%" stop-color="#418B3D"></stop>
-        <stop offset="63.52%" stop-color="#419637"></stop>
-        <stop offset="93.19%" stop-color="#3FA92D"></stop>
-        <stop offset="100%" stop-color="#3FAE2A"></stop>
+        <stop offset="0%" stopColor="#41873F"></stop>
+        <stop offset="32.88%" stopColor="#418B3D"></stop>
+        <stop offset="63.52%" stopColor="#419637"></stop>
+        <stop offset="93.19%" stopColor="#3FA92D"></stop>
+        <stop offset="100%" stopColor="#3FAE2A"></stop>
       </linearGradient>
       <path
         id="a"
@@ -613,31 +613,31 @@ export const NodeJsIcon = () => (
           <path d="M109.797 91.305V35.019c0-2.08-1.271-4.045-3.12-5.085L57.786 1.85a5.106 5.106 0 0 0-1.848-.693l53.511 91.42c.231-.347.347-.809.347-1.271zM3.12 29.934C1.272 30.974 0 32.94 0 35.02v56.286c0 2.08 1.387 4.045 3.12 5.085l48.889 28.085c1.156.693 2.427.925 3.814.693L3.467 29.818l-.346.116z"></path>
           <path
             fill="url(#e)"
-            fill-rule="evenodd"
+            fillRule="evenodd"
             d="M50.391.809l-.693.347h.924l-.231-.347z"
             transform="translate(0 -9.246)"
           ></path>
           <path
             fill="url(#f)"
-            fill-rule="evenodd"
+            fillRule="evenodd"
             d="M106.792 105.636c1.387-.809 2.427-2.196 2.89-3.698L56.053 10.402c-1.387-.231-2.89-.116-4.16.693L3.351 39.065l52.355 95.465a8.057 8.057 0 0 0 2.196-.693l48.889-28.2z"
             transform="translate(0 -9.246)"
           ></path>
           <path
             fill="url(#g)"
-            fill-rule="evenodd"
+            fillRule="evenodd"
             d="M111.3 104.712l-.347-.578v.809l.346-.231z"
             transform="translate(0 -9.246)"
           ></path>
           <path
             fill="url(#h)"
-            fill-rule="evenodd"
+            fillRule="evenodd"
             d="M106.792 105.636l-48.773 28.085a6.973 6.973 0 0 1-2.196.693l.925 1.734 54.089-31.32v-.694l-1.387-2.312c-.231 1.618-1.271 3.005-2.658 3.814z"
             transform="translate(0 -9.246)"
           ></path>
           <path
             fill="url(#i)"
-            fill-rule="evenodd"
+            fillRule="evenodd"
             d="M106.792 105.636l-48.773 28.085a6.973 6.973 0 0 1-2.196.693l.925 1.734 54.089-31.32v-.694l-1.387-2.312c-.231 1.618-1.271 3.005-2.658 3.814z"
             transform="translate(0 -9.246)"
           ></path>

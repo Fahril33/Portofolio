@@ -1,0 +1,43 @@
+
+.card {
+    height: 100%;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border-radius: 10px;
+    overflow: hidden;
+    padding: 20px;
+    position: relative;
+    box-shadow: 0 5px 10px rgba(49, 56, 89, 0.12);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+        box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: visible;
+}
+.cardContent {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    width: 100%;
+}
+
+.contents {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 10px;
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+.halfCard {
+    width: 50%;
+}   
+
+.cardContent .Title {
+    font-size: 1.8rem;
+    font-weight: 600;   
+    text-align: center;
+}

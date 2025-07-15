@@ -1,6 +1,6 @@
 import React from "react";
 import "../components/styles/projectSection.css";
-import ProjectCard from "../components/ProjectCard";
+import ProjectCard from "../components/Casrds";
 import { projectData } from "../data/ProjectData";
 
 const ProjectSections: React.FC = () => {

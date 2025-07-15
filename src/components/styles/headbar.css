@@ -51,6 +51,12 @@
   font-size: 1rem;
   font-weight: 500;
   cursor: pointer;
+}
+
+.navbar ul li.active, .navbar ul li:hover {
+  color: #fffbfb;
+  font-weight: bold;
+  transform: scale(1.1);
   transition: all 0.3s ease;
 }
 

@@ -9,7 +9,6 @@ interface Props {
 const ProjectCard: React.FC<Props> = ({ title, items }) => {
   return (
     <div className="project">
-      <img src="" alt="" />
       <div className="projectContent">
         <span className="Title">{title}</span>
         <div className="contents">
@@ -24,5 +23,7 @@ const ProjectCard: React.FC<Props> = ({ title, items }) => {
     </div>
   );
 };
+
+
 
 export default ProjectCard;

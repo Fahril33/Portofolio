@@ -1,0 +1,15 @@
+.futureSectionContainer {
+  font-family: "Poppins", sans-serif;
+  background-color: whitesmoke;
+  color: #3a3a3a;
+  padding: 40px 20px;
+  height: 100vh;
+}
+
+.futureSection {
+  padding: 40px 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  width: 100%;
+}
