@@ -12,12 +12,14 @@
 }
 
 @media (min-width: 1024px) {
-    .projectSectionContainer, .currentSectionContainer, .futureSectionContainer {
-        padding: 20px 15%;
-        height: auto !important; 
-    }
-    .contactSectionContainer {
-        padding: 20px 15%;
-        height: auto !important; 
-    }
+  .projectSectionContainer,
+  .currentSectionContainer,
+  .futureSectionContainer {
+    padding: 20px 12% !important;
+    height: auto !important;
+  }
+  .contactSectionContainer {
+    padding: 20px 12% !important;
+    height: auto !important;
+  }
 }
