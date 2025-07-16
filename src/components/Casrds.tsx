@@ -14,7 +14,9 @@ const ProjectCard: React.FC<Props> = ({ title, items }) => {
         <div className="contents">
           {items.map(({ label, Icon }) => (
             <div className="content" key={label}>
-              <Icon />
+              <div className="icon">
+                <Icon />
+              </div>
               <p>{label}</p>
             </div>
           ))}

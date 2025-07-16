@@ -15,6 +15,7 @@ const ProjectSections: React.FC = () => {
             items={section.items}
           />
         ))}
+        
       </div>
       <p style={{ color: "grey", textAlign: "center" }}>Simple Carousel here</p>
     </div>

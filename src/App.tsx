@@ -18,9 +18,9 @@ function App() {
       <Transition firstcolor="#1f2235" />
       <About />      
       <ProjectSections />
-      <CurrentSection />
-      <FutureSections />
-      <ContactSection />
+      {/* <CurrentSection /> */}
+      {/* <FutureSections /> */}
+      {/* <ContactSection /> */}
       <Footer />
     </div>    
   );      

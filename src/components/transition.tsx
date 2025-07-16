@@ -2,7 +2,7 @@ import React from "react";
 
 type TransitionProps = {
   firstcolor: string;
-};  
+};
 
 function Transition({ firstcolor }: TransitionProps) {
   return (

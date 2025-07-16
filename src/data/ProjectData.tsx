@@ -11,10 +11,11 @@ import {
   TailwindIcon,
   BootstrapIcon,
   SupabaseIcon,
-  MySQLIcon,
+  MySQLIcon,  
+  CodeIgniterIcon,
+  MongoDBIcon,
 } from "../assets/icons/SVGs";
 
-import { CodeIgniterIcon, MongoDBIcon } from "../assets/icons/Images";
 
 import { IconType } from "../assets/types/IconType";
 
@@ -44,6 +45,7 @@ export const projectData: ProjectCategory[] = [
       { label: "NodeJs", Icon: NodeJsIcon },
       { label: "React", Icon: ReactIcon },
       { label: "Express", Icon: ExpressIcon },
+      // kenapa CI tidak tampil
       { label: "CodeIgniter", Icon: CodeIgniterIcon },
     ],
   },
