@@ -14,7 +14,7 @@
         box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     overflow: visible;
 }
-.cardContent {
+.cardContents {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -22,7 +22,7 @@
     width: 100%;
 }
 
-.contents {
+.cardContent {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -36,7 +36,7 @@
     width: 50%;
 }   
 
-.cardContent .Title {
+.cardContents .Title {
     font-size: 1.8rem;
     font-weight: 600;   
     text-align: center;

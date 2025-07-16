@@ -693,7 +693,7 @@ export const CodeIgniterIcon = () => (
     y="0px"
     width="max-content"
     height="max-content"
-    style={{ padding: "10px" }}
+    style={{ padding: "5px" }}
   >
     <path
       fill="#E9460F"

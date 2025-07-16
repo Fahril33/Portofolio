@@ -65,3 +65,10 @@
   font-weight: bold;
   transition: all 0.3s ease;
 }
+
+@media (max-width: 425.9px) {
+  .currentSection {
+    grid-template-columns: 1fr;
+  }
+}
+

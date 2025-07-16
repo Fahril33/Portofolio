@@ -4,7 +4,7 @@ type TransitionProps = {
   firstcolor: string;
 };
 
-function Transition({ firstcolor }: TransitionProps) {
+function TransitionHero({ firstcolor }: TransitionProps) {
   return (
     <div className="transition">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
@@ -22,4 +22,23 @@ function Transition({ firstcolor }: TransitionProps) {
   );
 }
 
-export default Transition;
+function TransitionFooter({ firstcolor }: TransitionProps) {
+  return (
+    <div className="transitionFooter">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+         <path fill={firstcolor} fill-opacity="1" d="M0,128L40,149.3C80,171,160,213,240,197.3C320,181,400,107,480,112C560,117,640,203,720,202.7C800,203,880,117,960,112C1040,107,1120,181,1200,181.3C1280,181,1360,107,1400,69.3L1440,32L1440,320L1400,320C1360,320,1280,320,1200,320C1120,320,1040,320,960,320C880,320,800,320,720,320C640,320,560,320,480,320C400,320,320,320,240,320C160,320,80,320,40,320L0,320Z"></path>
+      </svg>
+      <style>
+        {` 
+            .transitionFooter {
+                height: auto;
+                margin-bottom: -20px;
+                background-color: whitesmoke;
+            }
+        `}
+      </style>
+    </div>
+  );
+}
+
+export { TransitionHero, TransitionFooter };

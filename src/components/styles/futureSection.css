@@ -13,3 +13,9 @@
   gap: 30px;
   width: 100%;
 }
+
+@media (max-width: 329.9px) {
+    .futureSection {
+        grid-template-columns: 1fr;
+    }
+}

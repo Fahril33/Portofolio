@@ -7,9 +7,9 @@ function CurrentSection() {
       <h1 className="Text Header">Where I'm At</h1>
       <div className="currentSection">
         <div className="card">
-          <div className="cardContent">
+          <div className="cardContents">
             <span className="Title">Ongoing Project</span>
-            <div className="contents">
+            <div className="cardContent">
               <div className="currentContent">
                 <img
                   src="https://i.pinimg.com/736x/a2/7c/fb/a27cfb4e5b0f87c61c8b9d231e64cde7.jpg"
@@ -51,11 +51,11 @@ function CurrentSection() {
           </div>
         </div>
         <div className="card">
-          <div className="cardContent">
+          <div className="cardContents">
             <span className="Title">Just Finished</span>
-            <div className="contents">
+            <div className="cardContent">
               <div className="currentContent">
-                <h1>Empty</h1>
+                <h1>Empty.</h1>
               </div>
             </div>
           </div>
