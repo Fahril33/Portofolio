@@ -3,19 +3,19 @@
   background-color: whitesmoke;
   color: #3a3a3a;
   padding: 40px 20px;
-  height: 100vh;
+  height: auto;
 }
 
 .futureSection {
   padding: 40px 20px;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 30px;
   width: 100%;
 }
 
 @media (max-width: 329.9px) {
-    .futureSection {
-        grid-template-columns: 1fr;
-    }
+  .futureSection {
+    grid-template-columns: 1fr;
+  }
 }

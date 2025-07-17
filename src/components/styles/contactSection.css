@@ -1,9 +1,220 @@
 .contactSectionContainer {
-    font-family: 'Poppins', sans-serif;
-    background-color: #ffffff;
-    color: #1f2235;
-    padding: 12px 10vw;
-    height: 100vh;
-}   
+  font-family: "Poppins", sans-serif;
+  background-color: #ffffff;
+  color: #1f2235;
+  padding: 12px 10vw;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(-10%);
+}
 
+.contactSectionContainer .Header {
+  font-size: 2.5rem !important;
+  font-weight: 600;
+  color: #3a3a3a;
+  animation: bounce 1.2s infinite alternate;
+}
 
+@keyframes bounce {
+  0% {
+    transform: translateY(0);
+  }
+  30% {
+    transform: translateY(-18px);
+  }
+  60% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-8px);
+  }
+}
+
+.contactSectionContainer .contactSection {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  pointer-events: auto;
+}
+
+.contactSection .contactItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding-bottom: 5px;
+  gap: 5px;
+  cursor: pointer;
+  width: 100px;
+  height: 80px;
+  color: #c73737;
+  border-radius: 10%;
+  position: relative;
+  transition: color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  background: transparent;
+}
+
+.contactSection .contactItem:active {
+  transform: scale(0.9);
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.contactSection .contactItem svg {
+  position: relative;
+  z-index: 2;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  transition: fill 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.contactSection .contactItem span {
+  transition: color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  user-select: none;
+}
+
+.contactSection .contactItem::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 0%;
+  background-color: #c73737;
+  z-index: 0;
+  transition: height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+  will-change: height;
+}
+
+.contactSection .contactItem:hover,
+.contactSection .contactItem:focus-visible {
+  color: #fff !important;
+  transition: color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.contactSection .contactItem:hover svg,
+.contactSection .contactItem:focus-visible svg {
+  fill: #fff !important;
+  color: #fff !important;
+  transition: fill 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.contactSection .contactItem:hover::after,
+.contactSection .contactItem:focus-visible::after {
+  height: 100%;
+  transition: height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.contactSection .contactItem:not(:hover):not(:focus-visible)::after {
+  height: 0%;
+  transition: height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.contactSection .contactItem > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Add the growing circle effect when active */
+.contactSection .contactItem:active::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: radial-gradient(circle, #1877f2 0%, #1877f2 100%);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  animation: circleSpread 0.35s forwards;
+  pointer-events: none;
+}
+
+.contactSection .contactItem.facebook:active::before {
+  background: radial-gradient(circle, #1877f2 0%, #1877f2 100%);
+}
+.contactSection .contactItem.instagram:active::before {
+  background: radial-gradient(circle, #e4405f 0%, #e4405f 100%);
+}
+.contactSection .contactItem.github:active::before {
+  background: radial-gradient(circle, #333 0%, #333 100%);
+}
+.contactSection .contactItem.linkedin:active::before {
+  background: radial-gradient(circle, #0a66c2 0%, #0a66c2 100%);
+}
+
+@keyframes circleSpread {
+  to {
+    width: 200px;
+    height: 200px;
+    opacity: 1;
+  }
+}
+
+/* Change the svg fill on active to real logo color */
+.contactSection .contactItem.facebook:active svg {
+  fill: #1877f2 !important;
+  color: #ffffff !important;
+  transition: fill 0.25s, color 0.25s;
+}
+.contactSection .contactItem.instagram:active svg {
+  fill: #e4405f !important;
+  color: #ffffff !important;
+  transition: fill 0.25s, color 0.25s;
+}
+.contactSection .contactItem.github:active svg {
+  fill: #333 !important;
+  color: #ffffff !important;
+  transition: fill 0.25s, color 0.25s;
+}
+.contactSection .contactItem.linkedin:active svg {
+  fill: #0a66c2 !important;
+  color: #ffffff !important;
+  transition: fill 0.25s, color 0.25s;
+}
+
+@media (max-width: 425.9px) {
+  .contactSectionContainer {
+    padding: 12px 2vw;
+    transform: translateY(0%);
+  }
+  .contactSectionContainer .Header {
+    font-size: 1.5rem !important;
+  }
+  .contactSectionContainer .contactSection {
+    flex-direction: row;
+    gap: 12px;
+    align-items: center;
+    width: auto;
+    height: 100%;
+  }
+  .contactSection .contactItem {
+    width: 100%;
+    height: auto;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 8px;
+    gap: 10px;
+  }
+  .contactSection .contactItem svg {
+    width: 24px;
+    height: 24px;
+  }
+  .contactSection .contactItem span {
+    font-size: 3vw;
+  }
+}
