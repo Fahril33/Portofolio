@@ -33,9 +33,6 @@ function CurrentSection() {
                   <span style={{ backgroundColor: "#61dafb", color: "#222" }}>
                     React
                   </span>
-                  <span style={{ backgroundColor: "#f7df1e", color: "#222" }}>
-                    JavaScript
-                  </span>
                   <span style={{ backgroundColor: "#3178c6", color: "#fff" }}>
                     TypeScript
                   </span>
