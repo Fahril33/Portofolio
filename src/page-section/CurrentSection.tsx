@@ -14,7 +14,8 @@ function CurrentSection() {
               <div className="currentContent">
                 <img
                   src="https://preview-portfolio-7cl47fdfw0aqoci9j.vusercontent.net/placeholder.svg?height=400&width=600"
-                  alt=""
+                  alt="Quick Notes Logo"
+                  title="This is a placeholder logo. It will be replaced with a real logo when the project is complete."
                 />
               </div>
               <div className="currentContent">
@@ -42,6 +43,9 @@ function CurrentSection() {
                   </span>
                   <span style={{ backgroundColor: "#222", color: "#fff" }}>
                     CSS
+                  </span>
+                  <span style={{ backgroundColor: "#3b82f6", color: "#fff" }}>
+                    Tailwind CSS
                   </span>
                   <span style={{ backgroundColor: "#3ecf8e", color: "#fff" }}>
                     Supabase

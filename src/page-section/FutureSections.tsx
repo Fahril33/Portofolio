@@ -17,7 +17,8 @@ function FutureSections() {
                         <div className="currentContent">
                           <img
                             src="https://preview-portfolio-7cl47fdfw0aqoci9j.vusercontent.net/placeholder.svg?height=400&width=600"
-                            alt=""
+                            alt="Quick Math Logo"
+                            title="This is a placeholder logo. It will be replaced with a real logo when the project is complete."
                           />
                         </div>
                         <div className="currentContent">
