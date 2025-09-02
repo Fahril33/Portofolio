@@ -20,14 +20,13 @@ function CurrentSection() {
               <div className="currentContent">
                 <span className="projectTitle">Quick Notes</span>
                 <p>
-                  Quick Notes adalah aplikasi penjadwalan pribadi yang sederhana dan
-                  fleksibel, dirancang untuk membantu pengguna mengelola
-                  rutinitas harian, mingguan, event penting, dan daftar tugas
-                  secara efisien. Dengan fitur utama seperti jadwal mingguan
-                  flat, jadwal harian dalam mode template (berulang) atau
-                  one-time (reusable tanpa duplikasi data), kalender interaktif
-                  dengan reminders, serta todo list multifungsi (task, activity,
-                  notes).
+                  quick notes is a personal scheduler application that is simple
+                  and flexible, designed to help users manage their daily
+                  routines, weekly schedules, important events, and task lists
+                  efficiently. With main features such as weekly flat schedule,
+                  daily schedule in template (reusable without data duplicate),
+                  interactive calendar with reminders, and multifunctional todo
+                  list (task, activity, notes).
                 </p>
               </div>
               <div className="currentContent">
