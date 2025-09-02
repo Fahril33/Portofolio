@@ -17,7 +17,7 @@ const ProjectSections: React.FC = () => {
         ))}
         
       </div>
-      <p style={{ color: "grey", textAlign: "center" }}>Simple Carousel here</p>
+      {/* <p style={{ color: "grey", textAlign: "center" }}>Simple Carousel here</p> */}
     </div>
   );
 };

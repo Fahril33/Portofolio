@@ -29,13 +29,15 @@
   /* transform: translateY(-150px);  */
 }
 .Picture img {
-  width: 80%;
+  width: 200px;
+  height: 200px;
   max-width: 265px;
   min-width: 100px;
-  height: auto;
+  /* height: auto; */
   border-radius: 50%;
   border: 6px solid #ffffff;
   box-shadow: 0 6px 24px rgba(49, 56, 89, 0.12);
+  object-fit: cover;
 }
 
 .Text {
@@ -68,10 +70,8 @@
   }
 
   .Picture img {
-    width: 60%;
-    max-width: 265px;
-    min-width: 100px;
-    height: auto;
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
     border: 6px solid #ffffff;
     box-shadow: 0 6px 24px rgba(49, 56, 89, 0.12);

@@ -1,6 +1,7 @@
 import React from "react";
 import "../components/styles/currentSection.css";
 import "../components/styles/cards.css";
+
 function CurrentSection() {
   return (
     <div className="currentSectionContainer" id="current">
@@ -12,17 +13,21 @@ function CurrentSection() {
             <div className="cardContent">
               <div className="currentContent">
                 <img
-                  src="https://i.pinimg.com/736x/a2/7c/fb/a27cfb4e5b0f87c61c8b9d231e64cde7.jpg"
+                  src="https://preview-portfolio-7cl47fdfw0aqoci9j.vusercontent.net/placeholder.svg?height=400&width=600"
                   alt=""
                 />
               </div>
               <div className="currentContent">
-                <span className="projectTitle">Quick Math</span>
+                <span className="projectTitle">Quick Notes</span>
                 <p>
-                  Quick Math is a math game that challenges players to solve
-                  math problems as fast as possible. With many features and
-                  customization options, it is a fun and engaging way to improve
-                  your math skills.
+                  Quick Notes adalah aplikasi penjadwalan pribadi yang sederhana dan
+                  fleksibel, dirancang untuk membantu pengguna mengelola
+                  rutinitas harian, mingguan, event penting, dan daftar tugas
+                  secara efisien. Dengan fitur utama seperti jadwal mingguan
+                  flat, jadwal harian dalam mode template (berulang) atau
+                  one-time (reusable tanpa duplikasi data), kalender interaktif
+                  dengan reminders, serta todo list multifungsi (task, activity,
+                  notes).
                 </p>
               </div>
               <div className="currentContent">
@@ -47,7 +52,7 @@ function CurrentSection() {
             </div>
           </div>
         </div>
-        <div className="card">
+        {/* <div className="card">
           <div className="cardContents">
             <span className="Title">Just Finished</span>
             <div className="cardContent">
@@ -56,7 +61,7 @@ function CurrentSection() {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

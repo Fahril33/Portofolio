@@ -1,12 +1,13 @@
 import React from "react";
 import "../components/styles/aboutSection.css";
+import myPicture from "./../assets/myPict.png";
 
 function About() {
   return (
     <div className="aboutSectionContainer" id="about">
       <div className="Picture">
         <img
-          src="https://i.pinimg.com/736x/a2/7c/fb/a27cfb4e5b0f87c61c8b9d231e64cde7.jpg"
+          src={myPicture}
           alt=""
         />
       </div>

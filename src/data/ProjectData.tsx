@@ -44,9 +44,9 @@ export const projectData: ProjectCategory[] = [
     items: [
       { label: "NodeJs", Icon: NodeJsIcon },
       { label: "React", Icon: ReactIcon },
-      { label: "Express", Icon: ExpressIcon },
+      // { label: "Express", Icon: ExpressIcon },
       // kenapa CI tidak tampil
-      { label: "CodeIgniter", Icon: CodeIgniterIcon },
+      // { label: "CodeIgniter", Icon: CodeIgniterIcon },
     ],
   },
   {
