@@ -1,0 +1,89 @@
+@font-face {
+  font-family: "Poppins";
+  src: url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap");
+}
+
+.aboutSectionContainer {
+  font-family: "Poppins", sans-serif;
+  height: auto;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  height: 100vh;
+  transition: all 0.5s ease;
+}
+
+.Picture {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* transform: translateY(-150px);  */
+}
+.Picture img {
+  width: 200px;
+  height: 200px;
+  max-width: 265px;
+  min-width: 100px;
+  /* height: auto; */
+  border-radius: 50%;
+  border: 6px solid #ffffff;
+  box-shadow: 0 6px 24px rgba(49, 56, 89, 0.12);
+  object-fit: cover;
+}
+
+.Text {
+  /* transform: translateY(-150px);  */
+  padding: 0 15vw;
+  text-align: center;
+}
+.Text h1 {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #3a3a3a;
+}
+
+.Text p {
+  font-family: "Fira Mono", "Consolas", "Menlo", "Monaco", monospace;
+  /* text-align: justify; */
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: #1d2747;
+  margin: 20px 0;
+}
+
+/* mobile */
+@media (max-width: 768px) {
+  .aboutSectionContainer {
+    justify-content: center;
+    transition: all 0.5s ease;
+  }
+
+  .Picture img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 6px solid #ffffff;
+    box-shadow: 0 6px 24px rgba(49, 56, 89, 0.12);
+  }
+
+  .Text {
+    padding: 0 10px;
+    text-align: center;
+  }
+  .Text h1 {
+    font-size: 1.5rem;
+  }
+  .Text p {
+    text-align: center;
+    font-size: 0.9rem;
+  }
+}

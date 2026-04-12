@@ -1,0 +1,176 @@
+.authShell {
+  min-height: 100vh;
+  padding: 24px;
+  background: radial-gradient(1200px 600px at 20% 10%, #2a2f4a 0%, #1f2235 45%, #121428 100%);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.authCard {
+  width: 100%;
+  max-width: 520px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(14px);
+  border-radius: 18px;
+  padding: 18px;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
+}
+
+.authHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.brandMark {
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: #fffbfb;
+}
+
+.brandMark span {
+  color: #e35860;
+}
+
+.authBack {
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.9rem;
+}
+
+.authBack:hover {
+  color: #fffbfb;
+}
+
+.authTitle {
+  margin-top: 8px;
+  font-size: 1.6rem;
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+}
+
+.authSubtitle {
+  margin-top: 8px;
+  color: rgba(255, 255, 255, 0.78);
+  line-height: 1.5;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.98rem;
+}
+
+.authForm {
+  margin-top: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field label {
+  font-family: "Poppins", sans-serif;
+  font-size: 0.92rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.field input {
+  width: 100%;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(0, 0, 0, 0.18);
+  padding: 12px 12px;
+  color: #fff;
+  outline: none;
+  font-family: "Poppins", sans-serif;
+}
+
+.field input:focus {
+  border-color: rgba(227, 88, 96, 0.7);
+  box-shadow: 0 0 0 4px rgba(227, 88, 96, 0.18);
+}
+
+.rowSplit {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.toggle {
+  border: 0;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.85);
+  font-family: "Poppins", sans-serif;
+  cursor: pointer;
+  padding: 6px 10px;
+  border-radius: 10px;
+}
+
+.toggle:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: #fffbfb;
+}
+
+.primaryBtn {
+  width: 100%;
+  margin-top: 6px;
+  border: 0;
+  border-radius: 12px;
+  padding: 12px 14px;
+  cursor: pointer;
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(135deg, #e35860 0%, #ff7b81 55%, #ffb3b6 100%);
+  box-shadow: 0 12px 24px rgba(227, 88, 96, 0.25);
+}
+
+.primaryBtn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.authNote {
+  margin-top: 12px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.85);
+  font-family: "Poppins", sans-serif;
+  font-size: 0.92rem;
+}
+
+.authError {
+  margin-top: 12px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: rgba(255, 0, 0, 0.12);
+  border: 1px solid rgba(255, 0, 0, 0.18);
+  color: rgba(255, 255, 255, 0.92);
+  font-family: "Poppins", sans-serif;
+  font-size: 0.92rem;
+}
+
+@media (min-width: 1024px) {
+  .authShell {
+    padding: 48px;
+  }
+  .authCard {
+    padding: 22px;
+  }
+  .authTitle {
+    font-size: 1.9rem;
+  }
+}
+

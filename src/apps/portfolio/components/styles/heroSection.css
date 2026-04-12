@@ -1,0 +1,185 @@
+@font-face {
+  /* font-display: swap; */
+  src: url("../../styles/fonts/poppins-v23-latin-regular.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  font-family: "Poppins-Adjusted";
+  ascent-override: 75%;
+  descent-override: 10%;
+  line-gap-override: 10%;
+}
+
+.hero-container {
+  font-family: "Poppins-Adjusted", sans-serif;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  background-color: #1f2235;
+  color: #e35860;
+  padding: auto;
+  height: 100vh;
+  width: 100%;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+  /* z-index: 1; */
+}
+
+.hero.noHeroImage {
+  grid-template-columns: 1fr;
+}
+
+.hero.noHeroImage .text {
+  grid-column: 1 / -1;
+  justify-self: center;
+  align-items: center;
+  text-align: center;
+}
+
+.hero-content {
+  z-index: 5;
+}
+
+.hero-container span {
+  max-width: max-content;
+}
+
+.text {
+  font-size: 28px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  grid-column: span 2;
+  line-height: 1;
+  display: flex;
+  flex-direction: column;
+  max-width: max-content;
+}
+
+.name {
+  font-size: 120px;
+  font-weight: 800;
+  transition: all 0.3s ease;
+  letter-spacing: 10px;
+  /* min-height: 1.2em; Prevent layout collapse */
+  display: flex;
+  align-items: center;
+}
+
+.greetings,
+.job {
+  color: #fff5f5;
+}
+
+.hero img {
+  display: block;
+  height: 50vh;
+  z-index: 10;
+  justify-self: end;
+}
+
+.hero-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #0d0d0d;
+}
+
+#particles-js {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+@media (max-width: 768.9px) {
+  .hero {
+    grid-template-columns: 1fr 1fr;
+    justify-content: flex-end;
+    padding: 0 10vw;
+  }
+
+  .text {
+    grid-column: 1;
+    grid-row: 2;
+    font-size: 1rem;
+    grid-column: span 2;
+  }
+
+  .name {
+    font-size: 2.2rem;
+  }
+
+  .hero img {
+    display: none;
+    transition: all 0.3s ease;
+  }
+}
+
+@media (min-width: 1024.9px) {
+  .hero img {
+    height: 50vh;
+    transition: all 0.3s ease;
+  }
+
+  .name {
+    font-size: 8rem;
+  }
+
+  .job,
+  .greetings {
+    font-size: 2.2rem;
+  }
+}
+
+@media (min-width: 1440px) {
+  .hero img {
+    height: 500px;
+    transition: all 0.3s ease;
+  }
+}
+
+/* Typewriter (driven by React state) */
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+.typewriter {
+  --caret: currentcolor;
+  min-width: 1ch;
+  letter-spacing: 0.02em;
+  display: inline-flex;
+  align-items: center;
+  min-height: 1em; /* Ensure stable height */
+}
+
+.typewriterText {
+  white-space: pre;
+}
+
+.typewriterCaret {
+  display: inline-block;
+  width: 0.1ch;
+  height: 0.8em; /* Explicit height for visibility */
+  border-right: 0.3ch solid var(--caret);
+  animation: blink 0.8s step-end infinite;
+  margin-left: 0.1ch;
+  vertical-align: middle;
+}
+
+@media (prefers-reduced-motion) {
+  .typewriterCaret {
+    animation: none;
+  }
+}

@@ -1,0 +1,551 @@
+:root {
+  --sidebar-width: 260px;
+  --accent-color: #e35860;
+  --accent-gradient: linear-gradient(
+    135deg,
+    #e35860 0%,
+    #ff7b81 60%,
+    #ffb3b6 100%
+  );
+  --bg-dark: #0f1120;
+  --bg-panel: rgba(255, 255, 255, 0.05);
+  --border-light: rgba(255, 255, 255, 0.1);
+  --text-main: #fffbfb;
+  --text-muted: rgba(255, 255, 255, 0.6);
+  --glass-bg: rgba(255, 255, 255, 0.03);
+  --glass-blur: blur(16px);
+}
+
+.leadShell {
+  display: flex;
+  min-height: 100vh;
+  background: var(--bg-dark);
+  color: var(--text-main);
+  font-family: "Poppins", sans-serif;
+  overflow: hidden;
+}
+
+/* Sidebar Styling */
+.leadSidebar {
+  width: var(--sidebar-width);
+  background: rgba(255, 255, 255, 0.02);
+  border-right: 1px solid var(--border-light);
+  display: flex;
+  flex-direction: column;
+  padding: 24px 0;
+  flex-shrink: 0;
+  z-index: 10;
+}
+
+.sidebarBrand {
+  padding: 0 24px 32px 24px;
+}
+
+.sidebarBrand h2 {
+  font-size: 1.25rem;
+  margin: 0;
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 800;
+}
+
+.sidebarMenu {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 0 12px;
+}
+
+.sidebarItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: var(--text-muted);
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.sidebarItemContent {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sidebarItemAction {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: white;
+  opacity: 0.7;
+  transition: all 0.2s ease;
+}
+
+.sidebarItem:hover .sidebarItemAction {
+  opacity: 1;
+}
+
+.sidebarItemAction:hover {
+  background: var(--accent-color);
+  border-color: transparent;
+}
+
+.sidebarItem:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-main);
+}
+
+.sidebarItem.active {
+  background: var(--accent-gradient);
+  color: white;
+  box-shadow: 0 4px 15px rgba(227, 88, 96, 0.3);
+}
+
+.sidebarItem.disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  filter: grayscale(1);
+}
+
+.sidebarItem.disabled:hover {
+  background: transparent;
+  color: var(--text-muted);
+}
+
+.sidebarFooter {
+  padding: 24px;
+  border-top: 1px solid var(--border-light);
+}
+
+/* Main Layout */
+.leadMain {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow-y: auto;
+  position: relative;
+}
+
+.leadHeader {
+  position: sticky;
+  top: 0;
+  background: rgba(15, 17, 32, 0.8);
+  backdrop-filter: var(--glass-blur);
+  padding: 12px 24px;
+  border-bottom: 1px solid var(--border-light);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 5;
+  flex-shrink: 0;
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.breadcrumb span {
+  color: var(--text-main);
+  font-weight: 600;
+}
+
+.headerActions {
+  display: flex;
+  gap: 12px;
+}
+
+/* Portfolio Tabs */
+.portfolioTabs {
+  display: flex;
+  gap: 8px;
+  padding: 12px 32px;
+  background: rgba(255, 255, 255, 0.02);
+  border-bottom: 1px solid var(--border-light);
+  overflow-x: auto;
+  scrollbar-width: none;
+  flex-shrink: 0;
+}
+
+.portfolioTabs::-webkit-scrollbar {
+  display: none;
+}
+
+.tabItem {
+  padding: 4px 16px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  border: 1px solid transparent;
+  color: var(--text-muted);
+}
+
+.tabItem:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-main);
+}
+
+.tabItem.active {
+  background: rgba(227, 88, 96, 0.1);
+  color: var(--accent-color);
+  border-color: rgba(227, 88, 96, 0.3);
+}
+
+/* Content Area */
+.leadContainer {
+  padding: 32px;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.pageHeading {
+  margin-bottom: 24px;
+}
+
+.pageHeading h1 {
+  font-size: 1.8rem;
+  margin: 0 0 8px 0;
+}
+
+.pageHeading p {
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.editPanel {
+  background: var(--bg-panel);
+  border: 1px solid var(--border-light);
+  border-radius: 24px;
+  padding: 32px;
+  backdrop-filter: var(--glass-blur);
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+.formField {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.formField.fullWidth {
+  grid-column: 1 / -1;
+}
+
+.formField label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-left: 4px;
+}
+
+.formField input,
+.formField textarea,
+.formField select {
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 14px 18px;
+  color: white;
+  font-family: inherit;
+  font-size: 0.95rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.formField input:hover,
+.formField textarea:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.formField input:focus,
+.formField textarea:focus {
+  border-color: var(--accent-color);
+  background: rgba(0, 0, 0, 0.4);
+  outline: none;
+  box-shadow:
+    0 0 0 4px rgba(227, 88, 96, 0.15),
+    inset 0 2px 4px rgba(0, 0, 0, 0.2);
+  transform: translateY(-1px);
+}
+
+.formField textarea {
+  min-height: 150px;
+  line-height: 1.6;
+}
+
+.actionRow {
+  grid-column: 1 / -1;
+  margin-top: 32px;
+  width: calc(100% + 64px); 
+  padding: 10px 10px;
+  border-top: 1px solid var(--border-light);
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  align-items: center;
+  position: sticky;
+  bottom: 0px;
+  z-index: 50;
+  background: #16192c71 ;
+  backdrop-filter: blur(10px);
+  margin-left: -32px;
+  margin-right: -32px;
+  margin-bottom: -32px;
+  border-bottom-left-radius: 24px;
+  border-bottom-right-radius: 24px;
+}
+
+.settingsHr {
+  grid-column: 1 / -1;
+  width: 100%;
+  border: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  margin: 10px 0 0 0;
+}
+
+.toggleRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.inlineToggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.inlineToggle select {
+  margin-left: 8px;
+}
+
+.smallNote {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.72);
+  line-height: 1.4;
+}
+
+.smallError {
+  font-size: 0.85rem;
+  color: #ff8888;
+}
+
+.imagePreviewRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.imagePreviewBox {
+  margin-top: 12px;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.2);
+  padding: 10px;
+}
+
+.imagePreviewBox img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+
+/* Buttons */
+.btn {
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid var(--border-light);
+  background: rgba(255, 255, 255, 0.05);
+  color: white;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn.thin {
+  padding: 6px 14px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 8px;
+}
+
+.btn:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-1px);
+}
+
+.btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btnPrimary {
+  background: var(--accent-gradient);
+  border: none;
+  box-shadow: 0 4px 15px rgba(227, 88, 96, 0.2);
+}
+
+.btnPrimary:hover:not(:disabled) {
+  box-shadow: 0 6px 20px rgba(227, 88, 96, 0.3);
+}
+
+.btn.danger {
+  border-color: rgba(255, 68, 68, 0.25);
+  background: rgba(255, 68, 68, 0.08);
+}
+
+.btn.danger:hover:not(:disabled) {
+  background: rgba(255, 68, 68, 0.14);
+}
+
+.btnLogout {
+  width: 100%;
+  justify-content: center;
+}
+
+/* List Items (Showcases/Socials) */
+.listContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.listItem {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-light);
+  border-radius: 16px;
+  padding: 20px;
+  display: grid;
+  gap: 20px;
+  position: relative;
+}
+
+.listItemHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.listItemBadge {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.errorBox {
+  margin-top: 20px;
+  background: rgba(255, 68, 68, 0.1);
+  border: 1px solid rgba(255, 68, 68, 0.2);
+  padding: 16px;
+  border-radius: 12px;
+  color: #ff8888;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .leadSidebar {
+    width: 80px;
+    padding: 24px 8px;
+  }
+  .sidebarBrand h2,
+  .sidebarItem span {
+    display: none;
+  }
+  .sidebarItem {
+    justify-content: center;
+    padding: 12px;
+  }
+}
+
+@media (max-width: 600px) {
+  .leadShell {
+    flex-direction: column;
+  }
+  .leadSidebar {
+    width: 100%;
+    height: auto;
+    flex-direction: row;
+    padding: 12px;
+    border-right: none;
+    border-bottom: 1px solid var(--border-light);
+  }
+  .sidebarMenu {
+    flex-direction: row;
+    overflow-x: auto;
+  }
+  .sidebarFooter {
+    display: none;
+  }
+}
+/* Utility & Custom Interaction */
+.hoverDim:hover {
+  background: rgba(255, 255, 255, 0.1) !important;
+  color: var(--accent-color) !important;
+}
+
+input[type="checkbox"] {
+  accent-color: var(--accent-color);
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.listItemHeader select:focus {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
+}

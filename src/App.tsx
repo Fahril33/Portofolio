@@ -1,16 +1,11 @@
-import React, { useState } from 'react'
-import logo from './logo.svg'
-// import './App.css'
-import Header from './components/headbar'
-import Hero from './components/hero'
-
+import "./App.css";
+import { usePathname } from "./lib/navigation";
+import AdminApp from "./apps/admin/AdminApp";
+import PortfolioApp from "./apps/portfolio/PortfolioApp";
 function App() {
-  return (
-    <div style={{width: "100%"}}>
-      <Header />
-      <Hero />
-    </div>
-  )
+  const pathname = usePathname();
+
+  return pathname === "/login" || pathname === "/lead" ? <AdminApp /> : <PortfolioApp />;
 }
 
-export default App
+export default App;

@@ -1,0 +1,105 @@
+.brickField {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.brickLabel {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.72);
+  margin-left: 4px;
+}
+
+.brickList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.brick {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  cursor: pointer;
+  transition: transform 0.12s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.12s;
+  user-select: none;
+  outline: none;
+}
+
+.brick:hover {
+  transform: translateY(-1px);
+  border-color: rgba(227, 88, 96, 0.35);
+  padding-right: 34px;
+}
+
+.brick:focus-visible {
+  border-color: rgba(227, 88, 96, 0.55);
+  box-shadow: 0 0 0 4px rgba(227, 88, 96, 0.15);
+  padding-right: 34px;
+}
+
+.brick.selected {
+  border-color: rgba(255, 255, 255, 0.7);
+  background: rgba(227, 88, 96, 0.22);
+}
+
+.brickText {
+  font-weight: 800;
+  font-size: 0.92rem;
+  color: rgba(255, 255, 255, 0.94);
+}
+
+.brickDelete {
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0;
+  pointer-events: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  border: 0;
+  background: rgba(0, 0, 0, 0.35);
+  color: rgba(255, 255, 255, 0.92);
+  font-weight: 900;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: opacity 0.12s, transform 0.12s;
+}
+
+.brick:hover .brickDelete,
+.brick:focus-visible .brickDelete {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(-50%) scale(1.02);
+}
+
+.brickAddRow {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+}
+
+.brickAddRow input {
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 12px 14px;
+  color: white;
+  font-family: inherit;
+  font-size: 0.95rem;
+}
+
+.brickAddRow input:focus {
+  border-color: rgba(227, 88, 96, 0.7);
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(227, 88, 96, 0.15);
+}

@@ -1,4 +1,4 @@
-const particlesConfig: object = {
+const particlesConfig: Record<string, unknown> = {
   particles: {
     number: {
       value: 50,
@@ -82,7 +82,7 @@ const particlesConfig: object = {
     },
     modes: {
       grab: {
-        distance: 200,
+        distance: 350,
         line_linked: {
           opacity: 0.8,
         },

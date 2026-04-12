@@ -59,6 +59,12 @@
 .navbar ul li a {
   color: #e35860;
   text-decoration: none;
+  display: inline-block;
+}
+
+.navbar ul li.active a,
+.navbar ul li:hover a {
+  color: #fffbfb;
 }
 
 .navbar ul li a:hover {
