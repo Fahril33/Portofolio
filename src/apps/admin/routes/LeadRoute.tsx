@@ -19,75 +19,19 @@ import {
   type AboutSettingsConfig,
 } from "../../../shared/types/aboutSettings";
 
-// ─── Row Types ────────────────────────────────────────────────────────────────
+import {
+  type HeroRow,
+  type AboutRow,
+  type AppConfigRow,
+  type SocialRow,
+  type ShowcaseRow,
+  type SkillCategoryRow,
+  type SkillItemRow,
+  type HeroBaseline,
+  type AboutBaseline,
+  type SkillsDraft,
+} from "../types/adminTypes";
 
-type AboutRow = {
-  id: number;
-  heading: string | null;
-  tagline: string | null;
-  body: string | null;
-  image_url: string | null;
-  image_alt: string | null;
-};
-
-type HeroRow = {
-  id: number;
-  greeting: string | null;
-  job_title: string | null;
-  welcome_title: string | null;
-  welcome_text: string | null;
-  hero_image_url: string | null;
-  hero_image_alt: string | null;
-};
-
-type AppConfigRow = {
-  app: string;
-  namespace: string;
-  config: unknown;
-};
-
-type SocialRow = {
-  id: number;
-  label: string;
-  href: string;
-  icon: string;
-  sort_order: number;
-  active: boolean;
-};
-
-type ShowcaseRow = {
-  id: number;
-  status: "current" | "future";
-  header_title: string;
-  project_title: string;
-  description: string;
-  image_url: string;
-  image_alt: string;
-  image_title: string | null;
-  tags: unknown;
-  sort_order: number;
-  active: boolean;
-};
-
-type SkillCategoryRow = {
-  id: number;
-  title: string;
-  sort_order: number;
-  active: boolean;
-};
-
-type SkillItemRow = {
-  id: number;
-  category_id: number;
-  label: string;
-  icon_key: string;
-  text_color: string | null;
-  bg_color: string | null;
-  sort_order: number;
-  active: boolean;
-};
-
-// ─── Helpers ──────────────────────────────────────────────────────────────────
 
 /** Require a valid accessToken or redirect to login. Returns null if invalid. */
 const requireToken = async (

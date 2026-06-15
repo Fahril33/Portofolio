@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import "./styles/headbar.css";
-import { navigateTo } from "../../../lib/navigation";
 
 const SECTION_IDS = [
   "hero",
@@ -23,17 +22,19 @@ const NAV_LABELS: Record<SectionId, string> = {
 };
 
 const Headbar: React.FC = () => {
-  const codeSymbol = "</>";
   const [show, setShow] = useState(true);
   const [activeSection, setActiveSection] = useState<SectionId>("hero");
+  const [clickCount, setClickCount] = useState<number>(0);
   const lastScroll = useRef(typeof window !== "undefined" ? window.scrollY : 0);
   const rafId = useRef<number | null>(null);
+  const clickTimer = useRef<number | null>(null);
+  const isCooldown = useRef<boolean>(false);
   const logoClick = useRef<{ count: number; lastAt: number }>({
     count: 0,
     lastAt: 0,
   });
 
-  const scrollToSection = useCallback((id: SectionId) => {
+  const scrollToSection = useCallback((id: SectionId): void => {
     const el = document.getElementById(id);
     if (!el) return;
 
@@ -43,7 +44,7 @@ const Headbar: React.FC = () => {
     window.scrollTo({ top: offsetPosition, behavior: "smooth" });
   }, []);
 
-  const updateActiveSection = useCallback(() => {
+  const updateActiveSection = useCallback((): void => {
     const currentScroll = window.scrollY;
     setShow((prev) => {
       const next = currentScroll <= lastScroll.current || currentScroll <= 50;
@@ -65,7 +66,7 @@ const Headbar: React.FC = () => {
     if (!found) setActiveSection((prev) => (prev === "hero" ? prev : "hero"));
   }, []);
 
-  const handleScroll = useCallback(() => {
+  const handleScroll = useCallback((): void => {
     if (rafId.current != null) return;
     rafId.current = window.requestAnimationFrame(() => {
       rafId.current = null;
@@ -73,12 +74,56 @@ const Headbar: React.FC = () => {
     });
   }, [updateActiveSection]);
 
+  const handleLogoClick = (): void => {
+    if (isCooldown.current) return;
+
+    const now = Date.now();
+    const within = now - logoClick.current.lastAt < 600;
+    const nextCount = within ? logoClick.current.count + 1 : 1;
+    logoClick.current.count = nextCount;
+    logoClick.current.lastAt = now;
+
+    setClickCount(nextCount);
+
+    if (clickTimer.current) {
+      window.clearTimeout(clickTimer.current);
+      clickTimer.current = null;
+    }
+
+    if (nextCount >= 3) {
+      isCooldown.current = true;
+      logoClick.current.count = 0;
+
+      // Wait for the launch animation to complete, then reset
+      window.setTimeout(() => {
+        setClickCount(0);
+        // Extra cooldown to let fadeout transitions finish before re-enabling
+        window.setTimeout(() => {
+          isCooldown.current = false;
+        }, 800);
+      }, 1200);
+      return;
+    }
+
+    clickTimer.current = window.setTimeout(() => {
+      scrollToSection("hero");
+      logoClick.current.count = 0;
+      // Start cooldown during fadeout back to white
+      isCooldown.current = true;
+      setClickCount(0);
+      window.setTimeout(() => {
+        isCooldown.current = false;
+      }, 600);
+    }, 600);
+  };
+
   useEffect(() => {
     window.addEventListener("scroll", handleScroll, { passive: true });
     updateActiveSection();
     return () => {
       window.removeEventListener("scroll", handleScroll);
       if (rafId.current != null) window.cancelAnimationFrame(rafId.current);
+      if (clickTimer.current != null) window.clearTimeout(clickTimer.current);
     };
   }, [handleScroll, updateActiveSection]);
 
@@ -90,29 +135,18 @@ const Headbar: React.FC = () => {
   return (
     <nav className="navbar" style={navbarStyle}>
       <p
-        className="DropdownNav"
+        className={`DropdownNav ${clickCount === 3 ? "launching" : ""}`}
         tabIndex={0}
         aria-label="Home"
         role="button"
-        onClick={() => {
-          const now = Date.now();
-          const within = now - logoClick.current.lastAt < 450;
-          logoClick.current.count = within ? logoClick.current.count + 1 : 1;
-          logoClick.current.lastAt = now;
-
-          if (logoClick.current.count >= 3) {
-            logoClick.current.count = 0;
-            navigateTo("/login");
-            return;
-          }
-
-          scrollToSection("hero");
-        }}
+        onClick={handleLogoClick}
         onKeyDown={(e) => {
           if (e.key === "Enter" || e.key === " ") scrollToSection("hero");
         }}
       >
-        <b>{codeSymbol}</b>
+        <span className={`logo-char char-1 ${clickCount >= 1 ? "active" : ""}`}>&lt;</span>
+        <span className={`logo-char char-2 ${clickCount >= 2 ? "active" : ""}`}>/</span>
+        <span className={`logo-char char-3 ${clickCount >= 3 ? "active" : ""}`}>&gt;</span>
       </p>
       <ul>
         {SECTION_IDS.map((id) => (

@@ -6,8 +6,8 @@ export const JavascriptIcon = () => (
     xmlns="http://www.w3.org/2000/svg"
     x="0px"
     y="0px"
-    width="max-content"
-    height="max-content"
+    width="100%"
+    height="100%"
     viewBox="0,0,256,256"
   >
     <g transform="translate(-12.8,-12.8) scale(1.1,1.1)">
@@ -38,8 +38,8 @@ export const TypescriptIcon = () => (
     xmlns="http://www.w3.org/2000/svg"
     x="0px"
     y="0px"
-    width="max-content"
-    height="max-content"
+    width="100%"
+    height="100%"
     viewBox="0,0,256,256"
   >
     <g transform="translate(3.84,3.84) scale(0.97,0.97)">
@@ -70,8 +70,8 @@ export const PhpIcon = () => (
     xmlns="http://www.w3.org/2000/svg"
     x="0px"
     y="0px"
-    width="max-content"
-    height="max-content"
+    width="100%"
+    height="100%"
     viewBox="0,0,256,256"
   >
     <g
@@ -120,8 +120,8 @@ export const PythonIcon = () => (
     xmlns="http://www.w3.org/2000/svg"
     x="0px"
     y="0px"
-    width="max-content"
-    height="max-content"
+    width="100%"
+    height="100%"
     viewBox="0 0 48 48"
   >
     <path
@@ -141,8 +141,8 @@ export const CSS3Icon = () => (
     xmlns="http://www.w3.org/2000/svg"
     x="0px"
     y="0px"
-    width="max-content"
-    height="max-content"
+    width="100%"
+    height="100%"
     viewBox="0 0 48 48"
   >
     <linearGradient
@@ -188,8 +188,8 @@ export const TailwindIcon = () => (
     xmlns="http://www.w3.org/2000/svg"
     x="0px"
     y="0px"
-    width="max-content"
-    height="max-content"
+    width="100%"
+    height="100%"
     viewBox="0,0,256,256"
   >
     <defs>
@@ -234,8 +234,8 @@ export const BootstrapIcon = () => (
     xmlns="http://www.w3.org/2000/svg"
     x="0px"
     y="0px"
-    width="max-content"
-    height="max-content"
+    width="100%"
+    height="100%"
     viewBox="0,0,256,256"
   >
     <defs>
@@ -298,8 +298,8 @@ export const MongoDBIcon = () => (
     id="mongodb"
     x="0px"
     y="0px"
-    width="max-content"
-    height="max-content"
+    width="100%"
+    height="100%"
   >
     <path
       fill="#FFF"
@@ -333,8 +333,8 @@ export const SupabaseIcon = () => (
     xmlns="http://www.w3.org/2000/svg"
     x="0px"
     y="0px"
-    width="max-content"
-    height="max-content"
+    width="100%"
+    height="100%"
     viewBox="0 0 48 48"
   >
     <g id="Ð¡Ð»Ð¾Ð¹_1">
@@ -377,8 +377,8 @@ export const MySQLIcon = () => (
     xmlns="http://www.w3.org/2000/svg"
     x="0px"
     y="0px"
-    width="max-content"
-    height="max-content"
+    width="100%"
+    height="100%"
     viewBox="0 0 48 48"
   >
     <linearGradient
@@ -440,8 +440,8 @@ export const FigmaIcon = () => (
     xmlns="http://www.w3.org/2000/svg"
     x="0px"
     y="0px"
-    width="max-content"
-    height="max-content"
+    width="100%"
+    height="100%"
     viewBox="0 0 48 48"
   >
     <path
@@ -470,8 +470,8 @@ export const ReactIcon = () => (
     xmlns="http://www.w3.org/2000/svg"
     x="0px"
     y="0px"
-    width="max-content"
-    height="max-content"
+    width="100%"
+    height="100%"
     viewBox="0,0,256,256"
   >
     <g transform="translate(10.24,10.24) scale(0.92,0.92)">
@@ -503,8 +503,8 @@ export const ExpressIcon = () => (
     xmlns="http://www.w3.org/2000/svg"
     x="0px"
     y="0px"
-    width="max-content"
-    height="max-content"
+    width="100%"
+    height="100%"
     viewBox="0 0 48 48"
   >
     <linearGradient
@@ -529,8 +529,8 @@ export const NodeJsIcon = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     xmlnsXlink="http://www.w3.org/1999/xlink"
-    width="max-content"
-    height="max-content"
+    width="100%"
+    height="100%"
     preserveAspectRatio="xMidYMid"
     viewBox="0 0 512 314"
     id="nodejs"
@@ -691,8 +691,8 @@ export const CodeIgniterIcon = () => (
     id="code-igniter"
     x="0px"
     y="0px"
-    width="max-content"
-    height="max-content"
+    width="100%"
+    height="100%"
     style={{ padding: "5px" }}
   >
     <path

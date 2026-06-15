@@ -115,7 +115,8 @@
   align-items: center;
   justify-content: center;
 }
-.projectContent .contents .content svg {
+.projectContent .contents .content svg,
+.projectContent .contents .content img {
   max-height: 75px;
   max-width: 75px;
 }
@@ -201,7 +202,8 @@
     transition: all 0.3s ease;
   }
 
-  .projectContent .contents .content svg {
+  .projectContent .contents .content svg,
+  .projectContent .contents .content img {
     max-width: 55px;
     max-height: 55px;
     transition: all 0.3s ease;
@@ -214,7 +216,8 @@
 }
 
 @media (max-width: 425.9px) {
-  .projectContent .contents .content svg {
+  .projectContent .contents .content svg,
+  .projectContent .contents .content img {
     max-width: 35px;
     max-height: 35px;
     transition: all 0.3s ease;

@@ -13,7 +13,7 @@
   --text-main: #fffbfb;
   --text-muted: rgba(255, 255, 255, 0.6);
   --glass-bg: rgba(255, 255, 255, 0.03);
-  --glass-blur: blur(16px);
+  --glass-blur: blur(12px);
 }
 
 .leadShell {
@@ -23,7 +23,11 @@
   color: var(--text-main);
   font-family: "Poppins", sans-serif;
   overflow: hidden;
+  
+  /* Slide in on mount */
+  animation: pageSlideIn 0.6s cubic-bezier(0.34, 1.3, 0.64, 1) forwards;
 }
+
 
 /* Sidebar Styling */
 .leadSidebar {
@@ -46,6 +50,7 @@
   margin: 0;
   background: var(--accent-gradient);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   font-weight: 800;
 }
@@ -236,7 +241,6 @@
   border: 1px solid var(--border-light);
   border-radius: 24px;
   padding: 32px;
-  backdrop-filter: var(--glass-blur);
   animation: fadeIn 0.3s ease-out;
 }
 
@@ -245,9 +249,10 @@
     opacity: 0;
     transform: translateY(10px);
   }
+
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: none;
   }
 }
 
@@ -313,23 +318,39 @@
 .actionRow {
   grid-column: 1 / -1;
   margin-top: 32px;
-  width: calc(100% + 64px); 
-  padding: 10px 10px;
-  border-top: 1px solid var(--border-light);
+  width: 100%;
+  padding: 16px 24px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
   display: flex;
   justify-content: flex-end;
   gap: 12px;
   align-items: center;
   position: sticky;
-  bottom: 0px;
+  bottom: 16px;
   z-index: 50;
-  background: #16192c71 ;
-  backdrop-filter: blur(10px);
-  margin-left: -32px;
-  margin-right: -32px;
-  margin-bottom: -32px;
-  border-bottom-left-radius: 24px;
-  border-bottom-right-radius: 24px;
+  border-radius: 16px;
+
+  /* Premium Dark Matte Glass (Glass Doff) Effect */
+  background: rgba(20, 22, 38, 0.55);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+
+  box-shadow:
+    0 12px 30px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.actionRow .btn {
+  padding: 8px 16px;
+  font-size: 0.8rem;
+  border-radius: 8px;
+}
+
+.actionRow .tripleBtn {
+  padding: 8px 16px;
+  min-width: 140px;
+  font-size: 0.8rem;
+  border-radius: 8px;
 }
 
 .settingsHr {
@@ -502,10 +523,12 @@
     width: 80px;
     padding: 24px 8px;
   }
+
   .sidebarBrand h2,
   .sidebarItem span {
     display: none;
   }
+
   .sidebarItem {
     justify-content: center;
     padding: 12px;
@@ -516,6 +539,7 @@
   .leadShell {
     flex-direction: column;
   }
+
   .leadSidebar {
     width: 100%;
     height: auto;
@@ -524,14 +548,17 @@
     border-right: none;
     border-bottom: 1px solid var(--border-light);
   }
+
   .sidebarMenu {
     flex-direction: row;
     overflow-x: auto;
   }
+
   .sidebarFooter {
     display: none;
   }
 }
+
 /* Utility & Custom Interaction */
 .hoverDim:hover {
   background: rgba(255, 255, 255, 0.1) !important;

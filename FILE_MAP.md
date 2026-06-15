@@ -1,4 +1,4 @@
-﻿# Portofolio – Structure & Flow
+# Portofolio – Structure & Flow
 
 ## High-level
 
@@ -48,4 +48,4 @@ Both use Supabase REST (`/rest/v1/*`). Public pages read via anon key (RLS publi
 ## Deployment notes
 
 - `public/_redirects` – SPA fallback for Cloudflare Pages (`/* /index.html 200`).
-- Env: copy `.env.example` → `.env` and fill `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY`.
+- Env: copy `.env.example` → `.env` (the example file already contains working default configurations).

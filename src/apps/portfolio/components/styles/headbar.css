@@ -1,7 +1,7 @@
 .navbar {
   background-color: #1f2235;
   color: #e35860;
-  padding: 34px 10vw;
+  padding: 14px 10vw;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -15,24 +15,110 @@
 }
 
 .navbar p {
+  font-family: "Poppins", sans-serif;
   font-size: 2rem;
-  font-weight: 600;
+  font-weight: 700;
+  letter-spacing: 0.1em;
   text-align: left;
   cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  display: inline-flex;
+  align-items: center;
+  touch-action: manipulation;
 }
 
-.navbar p:hover {
+.logo-char {
+  display: inline-block;
   color: #fffbfb;
-  transform: scale(1.1);
-  font-weight: bold;
-  transition: all 0.3s ease;
+  transition: color 0.4s cubic-bezier(0.25, 1, 0.5, 1), transform 0.2s ease;
+}
+
+.logo-char.char-1 {
+  transition-delay: 0.15s;
+}
+
+.logo-char.char-2 {
+  transition-delay: 0.08s;
+}
+
+.logo-char.char-3 {
+  transition-delay: 0s;
+}
+
+.logo-char.active {
+  color: rgb(227, 88, 96) !important;
+  transform: scale(1.15);
+  transition: color 0s, transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition-delay: 0s !important;
+}
+
+.navbar p:not(.launching):hover .char-1 {
+  transform: translateY(-3px);
+  transition-delay: 0s;
+}
+
+.navbar p:not(.launching):hover .char-2 {
+  transform: translateY(-3px);
+  transition-delay: 0.05s;
+}
+
+.navbar p:not(.launching):hover .char-3 {
+  transform: translateY(-3px);
+  transition-delay: 0.1s;
 }
 
 /* bounce effect p clicked */
-.navbar p:active {
+.navbar p:not(.launching):active {
   transform: scale(0.9);
-  transition: all 0.3s ease;
+  transition: all 0.1s ease;
 }
+
+/* 3rd Click Launch animations
+   Phase 1: Stagger shift right 8px (starting from rightmost char >)
+   Phase 2: All slide left off-screen together */
+
+/* char-3 (>) — shifts right first (no delay), slides left last */
+.launching .char-3 {
+  animation: launchShiftRight 0.25s ease-out forwards,
+             launchSlideLeft 0.5s cubic-bezier(0.76, 0, 0.24, 1) 0.9s forwards;
+}
+
+/* char-2 (/) — shifts right after 0.1s, slides left after 0.7s */
+.launching .char-2 {
+  animation: launchShiftRight 0.25s ease-out 0.1s forwards,
+             launchSlideLeft 0.5s cubic-bezier(0.76, 0, 0.24, 1) 0.7s forwards;
+}
+
+/* char-1 (<) — shifts right after 0.2s, slides left first */
+.launching .char-1 {
+  animation: launchShiftRight 0.25s ease-out 0.2s forwards,
+             launchSlideLeft 0.5s cubic-bezier(0.76, 0, 0.24, 1) 0.5s forwards;
+}
+
+@keyframes launchShiftRight {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(8px);
+    color: rgb(227, 88, 96);
+  }
+}
+
+@keyframes launchSlideLeft {
+  0% {
+    transform: translateX(8px);
+    color: rgb(227, 88, 96);
+  }
+  100% {
+    transform: translateX(-100vw);
+    color: rgb(227, 88, 96);
+  }
+}
+
+
+
 
 .navbar ul {
   list-style: none;

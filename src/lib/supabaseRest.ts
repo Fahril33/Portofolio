@@ -43,8 +43,11 @@ export type SupabaseSession = {
 const SESSION_KEY = "portfolio_supabase_session_v1";
 
 const getConfig = (): SupabaseConfig | null => {
-  const url = import.meta.env.VITE_SUPABASE_URL?.replace(/\/+$/, "");
-  const anonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+  let url = import.meta.env.VITE_SUPABASE_URL?.trim()?.replace(/\/+$/, "") || "";
+  if (url.endsWith("/rest/v1")) {
+    url = url.slice(0, -8);
+  }
+  const anonKey = import.meta.env.VITE_SUPABASE_ANON_KEY?.trim();
   if (!url || !anonKey) return null;
   return { url, anonKey };
 };
