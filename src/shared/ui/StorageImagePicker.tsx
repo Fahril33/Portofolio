@@ -1,23 +1,30 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import "./storageImagePicker.css";
 import {
+  deleteStorageObjects,
   listStorageObjects,
   signStorageObjectUrl,
   storagePublicUrl,
   uploadStorageObject,
   type StorageObject,
 } from "../../lib/supabaseRest";
+import { StorageFileList, baseName, toFullPath } from "./StorageFileList";
+import { StoragePickerTopBar } from "./StoragePickerTopBar";
+import { StoragePreviewCard } from "./StoragePreviewCard";
 
-export type StorageImagePickerProps = {
+export interface StorageImagePickerProps {
   bucket: string;
-  fixedPrefix: string; // e.g. "hero/"
+  fixedPrefix: string;
   isPublicBucket: boolean;
   selectedPath: string;
   onSelectPath: (path: string) => void;
   getAccessToken: () => Promise<string | null>;
-};
+}
 
-const baseName = (path: string) => path.split("/").filter(Boolean).pop() ?? path;
+const formatStorageError = (e: unknown, fallback: string): string =>
+  /row-level security/i.test(e instanceof Error ? e.message : fallback)
+    ? "Supabase Storage RLS belum diizinkan. Berikan policy INSERT/UPDATE pada storage.objects."
+    : e instanceof Error ? e.message : fallback;
 
 const StorageImagePicker: React.FC<StorageImagePickerProps> = ({
   bucket,
@@ -26,18 +33,17 @@ const StorageImagePicker: React.FC<StorageImagePickerProps> = ({
   selectedPath,
   onSelectPath,
   getAccessToken,
-}) => {
+}: StorageImagePickerProps): React.JSX.Element => {
   const [items, setItems] = useState<StorageObject[]>([]);
-  const [busy, setBusy] = useState(false);
+  const [busy, setBusy] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
-  const [previewUrl, setPreviewUrl] = useState("");
-  const [query, setQuery] = useState("");
-  const intervalRef = useRef<number | null>(null);
+  const [previewUrl, setPreviewUrl] = useState<string>("");
+  const [query, setQuery] = useState<string>("");
 
   const cleanBucket = bucket.trim();
   const cleanPrefix = fixedPrefix.trim().replace(/^\/+/, "");
 
-  const refresh = async () => {
+  const refresh = async (): Promise<void> => {
     if (!cleanBucket) return;
     setError(null);
     setBusy(true);
@@ -53,55 +59,51 @@ const StorageImagePicker: React.FC<StorageImagePickerProps> = ({
     }
   };
 
-  useEffect(() => {
-    if (!cleanBucket) return;
-    void refresh();
-    intervalRef.current = window.setInterval(() => {
-      void refresh();
-    }, 5000);
-    return () => {
-      if (intervalRef.current != null) window.clearInterval(intervalRef.current);
-      intervalRef.current = null;
-    };
+  useEffect((): void => {
+    if (!cleanBucket) setItems([]);
+    else void refresh();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cleanBucket, cleanPrefix]);
 
-  const filtered = useMemo(() => {
+  const filtered = useMemo((): StorageObject[] => {
     const q = query.trim().toLowerCase();
     if (!q) return items;
     return items.filter((i) => (i.name ?? "").toLowerCase().includes(q));
   }, [items, query]);
 
-  const resolvePreview = async (path: string) => {
+  const resolvePreview = async (path: string): Promise<void> => {
     setError(null);
     setPreviewUrl("");
     if (!cleanBucket || !path) return;
 
+    const fullPath = toFullPath(path, cleanPrefix);
     try {
       if (isPublicBucket) {
-        setPreviewUrl(storagePublicUrl(cleanBucket, path));
+        setPreviewUrl(storagePublicUrl(cleanBucket, fullPath));
         return;
       }
-
       const accessToken = await getAccessToken();
       if (!accessToken) throw new Error("Session expired.");
-      setPreviewUrl(await signStorageObjectUrl(cleanBucket, path, accessToken, 120));
+      setPreviewUrl(await signStorageObjectUrl(cleanBucket, fullPath, accessToken, 120));
     } catch (e) {
       setError(e instanceof Error ? e.message : "Failed to preview.");
     }
   };
 
-  useEffect(() => {
+  useEffect((): void => {
     if (!selectedPath) return;
     void resolvePreview(selectedPath);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedPath, isPublicBucket, cleanBucket]);
 
-  const upload = async (file: File) => {
+  const upload = async (file: File): Promise<void> => {
     setError(null);
-    if (!cleanBucket) return;
+    if (!cleanBucket) {
+      setError("Pilih atau isi nama bucket terlebih dahulu sebelum upload.");
+      return;
+    }
 
-    const dest = `${cleanPrefix}${cleanPrefix.endsWith("/") || cleanPrefix === "" ? "" : "/"}${file.name}`;
+    const dest = toFullPath(file.name, cleanPrefix);
     setBusy(true);
     try {
       const accessToken = await getAccessToken();
@@ -111,7 +113,31 @@ const StorageImagePicker: React.FC<StorageImagePickerProps> = ({
       onSelectPath(dest);
       await resolvePreview(dest);
     } catch (e) {
-      setError(e instanceof Error ? e.message : "Upload failed.");
+      setError(formatStorageError(e, "Upload failed."));
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  const handleDelete = async (path: string): Promise<void> => {
+    if (!path || !cleanBucket) return;
+    const fullPath = toFullPath(path, cleanPrefix);
+    const confirmed = window.confirm(`Hapus file "${baseName(fullPath)}" dari bucket "${cleanBucket}"?`);
+    if (!confirmed) return;
+
+    setError(null);
+    setBusy(true);
+    try {
+      const accessToken = await getAccessToken();
+      if (!accessToken) throw new Error("Session expired.");
+      await deleteStorageObjects(cleanBucket, [fullPath], accessToken);
+      if (toFullPath(selectedPath, cleanPrefix) === fullPath) {
+        onSelectPath("");
+        setPreviewUrl("");
+      }
+      await refresh();
+    } catch (e) {
+      setError(formatStorageError(e, "Gagal menghapus file."));
     } finally {
       setBusy(false);
     }
@@ -119,80 +145,50 @@ const StorageImagePicker: React.FC<StorageImagePickerProps> = ({
 
   return (
     <div className="storagePicker">
-      <div className="storagePickerTop">
-        <div className="storagePickerMeta">
-          <span className="pill">bucket: {cleanBucket || "-"}</span>
-          <span className="pill">folder: /{cleanPrefix || ""}</span>
-          <span className="pill">{isPublicBucket ? "public" : "private"}</span>
-        </div>
-        <div className="storagePickerActions">
-          <input
-            className="storagePickerSearch"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search file…"
-          />
-          <button type="button" className="btn thin" onClick={() => void refresh()} disabled={busy}>
-            Refresh
-          </button>
-          <label className={`btn thin ${busy ? "disabledLike" : ""}`}>
-            Upload
-            <input
-              type="file"
-              accept="image/*"
-              disabled={busy}
-              onChange={(e) => {
-                const f = e.target.files?.[0];
-                e.target.value = "";
-                if (f) void upload(f);
-              }}
-              style={{ display: "none" }}
-            />
-          </label>
-        </div>
-      </div>
+      <StoragePickerTopBar
+        bucket={cleanBucket}
+        prefix={cleanPrefix}
+        isPublicBucket={isPublicBucket}
+        query={query}
+        busy={busy}
+        onQueryChange={setQuery}
+        onRefresh={(): void => void refresh()}
+        onUpload={(file: File): void => void upload(file)}
+      />
 
       {error ? <div className="storagePickerError">{error}</div> : null}
 
       <div className="storagePickerGrid">
         <div className="storagePickerLeft">
-          <div className="fileList">
-            {filtered.length === 0 ? (
-              <div className="fileEmpty">{busy ? "Loading..." : "No files"}</div>
-            ) : (
-              filtered.map((o) => (
-                <button
-                  type="button"
-                  key={o.id ?? o.name}
-                  className={`fileRow ${selectedPath === o.name ? "active" : ""}`}
-                  onClick={() => {
-                    onSelectPath(o.name);
-                    void resolvePreview(o.name);
-                  }}
-                >
-                  <span className="fileName">{baseName(o.name)}</span>
-                  <span className="filePath">{o.name}</span>
-                </button>
-              ))
-            )}
+          <div className="fileListPanel">
+            <div className="panelHeader">
+              <span className="panelTitle">
+                <span>📁</span> Daftar File
+              </span>
+              <span className="panelBadge">{filtered.length} item</span>
+            </div>
+            <StorageFileList
+              files={filtered}
+              selectedPath={selectedPath}
+              prefix={cleanPrefix}
+              busy={busy}
+              onSelect={(fullPath: string): void => {
+                onSelectPath(fullPath);
+                void resolvePreview(fullPath);
+              }}
+            />
           </div>
         </div>
-        <div className="storagePickerRight">
-          <div className="previewCard">
-            <div className="previewTitle">Preview</div>
-            {previewUrl ? (
-              <img src={previewUrl} alt="preview" />
-            ) : (
-              <div className="previewEmpty">
-                {selectedPath ? "Loading preview..." : "Select a file"}
-              </div>
-            )}
-          </div>
-        </div>
+        <StoragePreviewCard
+          selectedPath={selectedPath}
+          previewUrl={previewUrl}
+          busy={busy}
+          onDelete={(path: string): void => void handleDelete(path)}
+        />
       </div>
     </div>
   );
 };
 
+export { StorageImagePicker };
 export default StorageImagePicker;
-

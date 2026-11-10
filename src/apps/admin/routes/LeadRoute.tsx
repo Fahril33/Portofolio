@@ -3,11 +3,16 @@ import { navigateTo } from "../../../lib/navigation";
 import { useAuth } from "../lib/auth";
 import LeadPage from "../pages/LeadPage";
 import {
+  storagePublicUrl,
   supabaseGet,
-  supabaseDelete,
   supabasePatch,
   supabaseUpsert,
 } from "../../../lib/supabaseRest";
+import {
+  requireToken,
+  syncDeletions,
+  splitNewAndExisting,
+} from "../lib/leadDataSync";
 import {
   defaultHeroSettingsConfig,
   normalizeHeroSettingsConfig,
@@ -27,64 +32,7 @@ import {
   type ShowcaseRow,
   type SkillCategoryRow,
   type SkillItemRow,
-  type HeroBaseline,
-  type AboutBaseline,
-  type SkillsDraft,
 } from "../types/adminTypes";
-
-
-/** Require a valid accessToken or redirect to login. Returns null if invalid. */
-const requireToken = async (
-  getAccessToken: () => Promise<string | null>,
-): Promise<string | null> => {
-  const token = await getAccessToken();
-  if (!token) {
-    navigateTo("/login");
-    return null;
-  }
-  return token;
-};
-
-/**
- * Compare baseline IDs with current IDs and delete any rows that were removed.
- * This is the core logic that ensures deletions reach the database.
- */
-const syncDeletions = async <T extends { id: number }>(
-  table: string,
-  baseline: T[] | null,
-  current: T[],
-  accessToken: string,
-) => {
-  if (!baseline || baseline.length === 0) return;
-  const currentIds = new Set(current.map((r) => r.id));
-  const deletedIds = baseline.filter((r) => !currentIds.has(r.id)).map((r) => r.id);
-  if (deletedIds.length === 0) return;
-  await supabaseDelete(table, `id=in.(${deletedIds.join(",")})`, accessToken);
-};
-
-/**
- * Filter out "new" rows (client-generated IDs that are not in the database).
- * New rows use client-side generated IDs. We strip the `id` field from them
- * so Supabase uses its auto-increment, then upsert existing rows normally.
- */
-const splitNewAndExisting = <T extends { id: number }>(
-  rows: T[],
-  baseline: T[] | null,
-): { existing: T[]; newRows: Omit<T, "id">[] } => {
-  const baseIds = new Set((baseline ?? []).map((r) => r.id));
-  const existing: T[] = [];
-  const newRows: Omit<T, "id">[] = [];
-  for (const row of rows) {
-    if (baseIds.has(row.id)) {
-      existing.push(row);
-    } else {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const { id: _id, ...rest } = row;
-      newRows.push(rest);
-    }
-  }
-  return { existing, newRows };
-};
 
 // ─── Component ────────────────────────────────────────────────────────────────
 
@@ -298,6 +246,19 @@ const LeadRoute: React.FC = () => {
     if (!accessToken) return;
     setBusy(true);
     try {
+      const storageImageUrl =
+        aboutSettings.image.source === "storage" &&
+        aboutSettings.image.storage.bucket.trim() &&
+        aboutSettings.image.storage.path.trim() &&
+        aboutSettings.image.storage.isPublic
+          ? storagePublicUrl(
+              aboutSettings.image.storage.bucket,
+              aboutSettings.image.storage.path,
+            )
+          : "";
+
+      const resolvedImageUrl = storageImageUrl || about.image_url;
+
       await supabasePatch<AboutRow[]>(
         "about_section",
         "id=eq.1",
@@ -305,8 +266,8 @@ const LeadRoute: React.FC = () => {
           heading: about.heading,
           tagline: about.tagline,
           body: about.body,
-          image_url: about.image_url,
-          image_alt: about.image_alt,
+          image_url: resolvedImageUrl,
+          image_alt: aboutSettings.image.alt || about.image_alt,
         },
         accessToken,
       );

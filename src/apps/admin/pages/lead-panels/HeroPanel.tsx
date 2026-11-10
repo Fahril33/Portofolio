@@ -4,7 +4,9 @@ import type { HeroSettingsConfig } from "../../../../shared/types/heroSettings";
 import type { StorageBucket } from "../../../../lib/supabaseRest";
 import TripleProgressButton from "../../../../shared/ui/TripleProgressButton";
 import StorageImagePicker from "../../../../shared/ui/StorageImagePicker";
-import BrickListInput, { type BrickItem } from "../../../../shared/ui/BrickListInput";
+import BrickListInput, {
+  type BrickItem,
+} from "../../../../shared/ui/BrickListInput";
 
 interface HeroPanelProps {
   hero: HeroRow;
@@ -76,7 +78,10 @@ const HeroPanel: React.FC<HeroPanelProps> = ({
         typewriter: {
           ...prev.typewriter,
           texts: nextTexts,
-          defaultIndex: Math.max(0, Math.min(nextTexts.length - 1, nextDefault)),
+          defaultIndex: Math.max(
+            0,
+            Math.min(nextTexts.length - 1, nextDefault),
+          ),
         },
       };
     });
@@ -100,6 +105,18 @@ const HeroPanel: React.FC<HeroPanelProps> = ({
         },
       };
     });
+  };
+
+  const handleSelectHeroImagePath = (path: string): void => {
+    setHeroSettings(
+      (prev: HeroSettingsConfig): HeroSettingsConfig => ({
+        ...prev,
+        heroImage: {
+          ...prev.heroImage,
+          storage: { ...prev.heroImage.storage, path },
+        },
+      }),
+    );
   };
 
   return (
@@ -156,7 +173,10 @@ const HeroPanel: React.FC<HeroPanelProps> = ({
             <input
               type="checkbox"
               checked={heroSettings.typewriter.loop}
-              disabled={!heroSettings.typewriter.enabled || !heroSettings.typewriter.rotate}
+              disabled={
+                !heroSettings.typewriter.enabled ||
+                !heroSettings.typewriter.rotate
+              }
               onChange={(e) =>
                 setHeroSettings((prev) => ({
                   ...prev,
@@ -188,7 +208,10 @@ const HeroPanel: React.FC<HeroPanelProps> = ({
           onChange={(e) =>
             setHeroSettings((prev) => ({
               ...prev,
-              typewriter: { ...prev.typewriter, typingMs: Number(e.target.value) || 0 },
+              typewriter: {
+                ...prev.typewriter,
+                typingMs: Number(e.target.value) || 0,
+              },
             }))
           }
         />
@@ -203,7 +226,10 @@ const HeroPanel: React.FC<HeroPanelProps> = ({
           onChange={(e) =>
             setHeroSettings((prev) => ({
               ...prev,
-              typewriter: { ...prev.typewriter, deletingMs: Number(e.target.value) || 0 },
+              typewriter: {
+                ...prev.typewriter,
+                deletingMs: Number(e.target.value) || 0,
+              },
             }))
           }
         />
@@ -218,7 +244,10 @@ const HeroPanel: React.FC<HeroPanelProps> = ({
           onChange={(e) =>
             setHeroSettings((prev) => ({
               ...prev,
-              typewriter: { ...prev.typewriter, pauseMs: Number(e.target.value) || 0 },
+              typewriter: {
+                ...prev.typewriter,
+                pauseMs: Number(e.target.value) || 0,
+              },
             }))
           }
         />
@@ -237,7 +266,10 @@ const HeroPanel: React.FC<HeroPanelProps> = ({
               onChange={(e) =>
                 setHeroSettings((prev) => ({
                   ...prev,
-                  welcomeAlert: { ...prev.welcomeAlert, enabled: e.target.checked },
+                  welcomeAlert: {
+                    ...prev.welcomeAlert,
+                    enabled: e.target.checked,
+                  },
                 }))
               }
             />
@@ -356,13 +388,20 @@ const HeroPanel: React.FC<HeroPanelProps> = ({
               value={heroSettings.heroImage.storage.bucket}
               onChange={(e) => {
                 const bucketName = e.target.value;
-                const bucket = storageBuckets.find((b) => b.name === bucketName);
+                const bucket = storageBuckets.find(
+                  (b) => b.name === bucketName,
+                );
                 const isPublic = bucket?.public ?? true;
                 setHeroSettings((prev) => ({
                   ...prev,
                   heroImage: {
                     ...prev.heroImage,
-                    storage: { ...prev.heroImage.storage, bucket: bucketName, path: "", isPublic },
+                    storage: {
+                      ...prev.heroImage.storage,
+                      bucket: bucketName,
+                      path: "",
+                      isPublic,
+                    },
                   },
                 }));
               }}
@@ -388,7 +427,10 @@ const HeroPanel: React.FC<HeroPanelProps> = ({
                   ...prev,
                   heroImage: {
                     ...prev.heroImage,
-                    storage: { ...prev.heroImage.storage, isPublic: e.target.value === "true" },
+                    storage: {
+                      ...prev.heroImage.storage,
+                      isPublic: e.target.value === "true",
+                    },
                   },
                 }))
               }
@@ -402,12 +444,7 @@ const HeroPanel: React.FC<HeroPanelProps> = ({
             fixedPrefix={HERO_FIXED_PREFIX}
             isPublicBucket={heroSettings.heroImage.storage.isPublic}
             selectedPath={heroSettings.heroImage.storage.path}
-            onSelectPath={(path) =>
-              setHeroSettings((prev) => ({
-                ...prev,
-                heroImage: { ...prev.heroImage, storage: { ...prev.heroImage.storage, path } },
-              }))
-            }
+            onSelectPath={handleSelectHeroImagePath}
             getAccessToken={getAccessToken}
           />
         </>
@@ -425,7 +462,8 @@ const HeroPanel: React.FC<HeroPanelProps> = ({
                 ...prev.heroImage,
                 size: {
                   ...prev.heroImage.size,
-                  widthPx: e.target.value === "" ? null : Number(e.target.value),
+                  widthPx:
+                    e.target.value === "" ? null : Number(e.target.value),
                 },
               },
             }))
@@ -444,7 +482,8 @@ const HeroPanel: React.FC<HeroPanelProps> = ({
                 ...prev.heroImage,
                 size: {
                   ...prev.heroImage.size,
-                  heightPx: e.target.value === "" ? null : Number(e.target.value),
+                  heightPx:
+                    e.target.value === "" ? null : Number(e.target.value),
                 },
               },
             }))
@@ -462,7 +501,12 @@ const HeroPanel: React.FC<HeroPanelProps> = ({
                 ...prev.heroImage,
                 size: {
                   ...prev.heroImage.size,
-                  objectFit: e.target.value as "contain" | "cover" | "fill" | "none" | "scale-down",
+                  objectFit: e.target.value as
+                    | "contain"
+                    | "cover"
+                    | "fill"
+                    | "none"
+                    | "scale-down",
                 },
               },
             }))
@@ -479,8 +523,8 @@ const HeroPanel: React.FC<HeroPanelProps> = ({
       <div className="formField fullWidth">
         <label>Preview</label>
         <div className="smallNote">
-          Preview untuk source <b>storage</b> ada di panel file picker (kanan). Untuk source{" "}
-          <b>url</b>, gambar akan langsung dipakai di halaman hero.
+          Preview untuk source <b>storage</b> ada di panel file picker (kanan).
+          Untuk source <b>url</b>, gambar akan langsung dipakai di halaman hero.
         </div>
       </div>
 

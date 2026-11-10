@@ -1,129 +1,28 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React from "react";
 import type { TypewriterSettings } from "../../../shared/types/heroSettings";
-import { isReturningFromLoginActive } from "../../../lib/navigation";
+import { useTypewriter } from "../hooks/useTypewriter";
+import { useTypewriterMotion } from "../hooks/useTypewriterMotion";
 
 export interface TypewriterTextProps {
   className?: string;
   settings: TypewriterSettings;
 }
 
-const safeIndex = (texts: string[], idx: number): number => {
-  if (texts.length === 0) return 0;
-  if (!Number.isFinite(idx)) return 0;
-  return Math.max(0, Math.min(texts.length - 1, Math.floor(idx)));
-};
-
 const TypewriterText: React.FC<TypewriterTextProps> = ({ className, settings }: TypewriterTextProps): React.JSX.Element => {
-  const texts = useMemo(
-    () => settings.texts.filter((t) => t.trim().length > 0),
-    [settings.texts]
-  );
-
-  const baseIndex = safeIndex(texts, settings.defaultIndex);
-  const isReturning = isReturningFromLoginActive();
-  const [isReady, setIsReady] = useState<boolean>(() => !isReturning);
-  const [textIndex, setTextIndex] = useState(baseIndex);
-  const [cursor, setCursor] = useState(0);
-  const [mode, setMode] = useState<"typing" | "pause" | "deleting">("typing");
-  const timer = useRef<number | null>(null);
-
-  const activeText = texts[textIndex] ?? "";
-
-  // Reset and delay when returning to portfolio from login or when settings change
-  useEffect((): (() => void) => {
-    setTextIndex(baseIndex);
-    setCursor(0);
-    setMode("typing");
-
-    if (isReturning) {
-      setIsReady(false);
-      const delayTimer = window.setTimeout((): void => {
-        setIsReady(true);
-      }, 750);
-      return (): void => window.clearTimeout(delayTimer);
-    }
-
-    setIsReady(true);
-    return (): void => {};
-  }, [baseIndex, isReturning, texts]);
-
-  useEffect((): (() => void) => {
-    if (timer.current != null) window.clearTimeout(timer.current);
-    timer.current = null;
-
-    if (!isReady) return (): void => {};
-    if (!settings.enabled) return (): void => {};
-    if (texts.length === 0) return (): void => {};
-
-    // If rotation disabled: type until full, then stop.
-    if (!settings.rotate && cursor >= activeText.length) return (): void => {};
-
-    const tick = (): void => {
-      if (mode === "typing") {
-        const next = Math.min(activeText.length, cursor + 1);
-        setCursor(next);
-        if (next >= activeText.length) setMode("pause");
-        return;
-      }
-
-      if (mode === "pause") {
-        if (settings.rotate && texts.length > 1) {
-          setMode("deleting");
-        }
-        return;
-      }
-
-      // deleting
-      const next = Math.max(0, cursor - 1);
-      setCursor(next);
-      if (next === 0) {
-        setTextIndex((prev) => {
-          const nextIndex = (prev + 1) % texts.length;
-          return settings.loop ? nextIndex : prev;
-        });
-        setMode("typing");
-      }
-    };
-
-    let delay = settings.typingMs;
-    if (mode === "pause") delay = settings.pauseMs;
-    if (mode === "deleting") delay = settings.deletingMs;
-
-    // Optional: add slight variance for professional feel
-    const jitter = mode === "typing" ? Math.random() * 20 : 0;
-
-    timer.current = window.setTimeout(tick, Math.max(0, delay + jitter));
-    return (): void => {
-      if (timer.current != null) window.clearTimeout(timer.current);
-      timer.current = null;
-    };
-  }, [
-    activeText.length,
-    cursor,
-    isReady,
-    mode,
-    settings.deletingMs,
-    settings.enabled,
-    settings.loop,
-    settings.pauseMs,
-    settings.rotate,
-    settings.typingMs,
-    texts.length,
-  ]);
-
-  const shown = settings.enabled
-    ? isReady
-      ? activeText.slice(0, cursor)
-      : ""
-    : activeText;
+  const { text, fullText, caret } = useTypewriter(settings);
+  const { stageRef, caretRef } = useTypewriterMotion(text, settings);
 
   return (
-    <span className={className}>
-      <span className="typewriterText">{shown}</span>
-      <span className="typewriterCaret" aria-hidden="true" />
+    <span className={className} data-caret={caret}>
+      <span className="typewriterAccessible">{fullText}</span>
+      <span ref={stageRef} className="typewriterStage" aria-hidden="true">
+        <span className="typewriterText">{text}</span>
+        <span ref={caretRef} className="typewriterCaretPosition">
+          <span className="typewriterCaret">|</span>
+        </span>
+      </span>
     </span>
   );
 };
 
 export default TypewriterText;
-

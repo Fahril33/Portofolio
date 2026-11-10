@@ -7,9 +7,9 @@ import {
   signOut,
 } from "../../../lib/supabaseRest";
 
-type AuthStatus = "loading" | "anonymous" | "member" | "admin";
+export type AuthStatus = "loading" | "anonymous" | "member" | "admin";
 
-type AuthContextValue = {
+export interface AuthContextValue {
   status: AuthStatus;
   configured: boolean;
   envMissing: string[];
@@ -17,22 +17,28 @@ type AuthContextValue = {
   login: (email: string, password: string) => Promise<void>;
   logout: () => Promise<void>;
   getAccessToken: () => Promise<string | null>;
-};
+}
+
+export interface AuthProviderProps {
+  children: React.ReactNode;
+}
 
 const AuthContext = createContext<AuthContextValue | null>(null);
 
-export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+export const AuthProvider: React.FC<AuthProviderProps> = ({
+  children,
+}: AuthProviderProps): React.JSX.Element => {
   const env = useMemo(() => getSupabaseEnvStatus(), []);
   const [status, setStatus] = useState<AuthStatus>("loading");
 
-  useEffect(() => {
+  useEffect((): (() => void) => {
     if (!env.configured) {
       setStatus("anonymous");
-      return;
+      return (): void => {};
     }
 
     let cancelled = false;
-    const init = async () => {
+    const init = async (): Promise<void> => {
       const token = await getValidAccessToken();
       if (cancelled) return;
       if (!token) {
@@ -46,7 +52,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     };
 
     void init();
-    return () => {
+    return (): void => {
       cancelled = true;
     };
   }, [env.configured]);
@@ -57,7 +63,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       configured: env.configured,
       envMissing: env.missing,
       envMode: env.mode,
-      login: async (email: string, password: string) => {
+      login: async (email: string, password: string): Promise<void> => {
         if (!env.configured) throw new Error("Supabase env belum terdeteksi.");
         setStatus("loading");
         try {
@@ -76,7 +82,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
           throw err;
         }
       },
-      logout: async () => {
+      logout: async (): Promise<void> => {
         setStatus("loading");
         try {
           await signOut();
@@ -84,7 +90,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
           setStatus("anonymous");
         }
       },
-      getAccessToken: async () => {
+      getAccessToken: async (): Promise<string | null> => {
         if (!env.configured) return null;
         return await getValidAccessToken();
       },
@@ -95,7 +101,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
 
-export const useAuth = () => {
+export const useAuth = (): AuthContextValue => {
   const ctx = useContext(AuthContext);
   if (!ctx) throw new Error("useAuth must be used within AuthProvider");
   return ctx;

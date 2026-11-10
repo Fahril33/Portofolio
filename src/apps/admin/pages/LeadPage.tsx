@@ -194,6 +194,12 @@ const LeadPage: React.FC<LeadPageProps> = ({
                 setAboutSettings={setAboutSettings}
                 onSave={onSaveAbout}
                 getAccessToken={auth.getAccessToken}
+                onBucketCreated={(newBucket: StorageBucket): void => {
+                  setStorageBuckets((prev: StorageBucket[]): StorageBucket[] => [
+                    ...prev.filter((b: StorageBucket): boolean => b.name !== newBucket.name),
+                    newBucket,
+                  ]);
+                }}
               />
             )}
 

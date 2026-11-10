@@ -8,26 +8,26 @@ import {
   type AboutSettingsConfig,
 } from "../../../shared/types/aboutSettings";
 
-type AboutRow = {
+export interface AboutRow {
   id: number;
   heading: string | null;
   tagline: string | null;
   body: string | null;
   image_url: string | null;
   image_alt: string | null;
-};
+}
 
-function About() {
+const About: React.FC = (): React.JSX.Element => {
   const [remote, setRemote] = useState<AboutRow | null>(null);
-  const [settings, setSettings] = useState<AboutSettingsConfig>(() =>
+  const [settings, setSettings] = useState<AboutSettingsConfig>((): AboutSettingsConfig =>
     defaultAboutSettingsConfig()
   );
 
-  useEffect(() => {
-    if (!isSupabaseConfigured()) return;
+  useEffect((): (() => void) => {
+    if (!isSupabaseConfigured()) return (): void => {};
 
     let cancelled = false;
-    const load = async () => {
+    const load = async (): Promise<void> => {
       try {
         const rows = await supabaseGet<AboutRow[]>("about_section", "id=eq.1", {
           select: "*",
@@ -40,16 +40,16 @@ function About() {
     };
 
     void load();
-    return () => {
+    return (): void => {
       cancelled = true;
     };
   }, []);
 
-  useEffect(() => {
-    if (!isSupabaseConfigured()) return;
+  useEffect((): (() => void) => {
+    if (!isSupabaseConfigured()) return (): void => {};
 
     let cancelled = false;
-    const load = async () => {
+    const load = async (): Promise<void> => {
       try {
         const rows = await supabaseGet<Array<{ app: string; namespace: string; config: unknown }>>(
           "app_configs",
@@ -64,7 +64,7 @@ function About() {
     };
 
     void load();
-    return () => {
+    return (): void => {
       cancelled = true;
     };
   }, []);
@@ -80,7 +80,6 @@ function About() {
 
   const storageUrl =
     settings.image.source === "storage" &&
-    settings.image.storage.isPublic &&
     settings.image.storage.bucket.trim() &&
     settings.image.storage.path.trim()
       ? storagePublicUrl(settings.image.storage.bucket, settings.image.storage.path)
@@ -103,14 +102,23 @@ function About() {
     <div className="aboutSectionContainer" id="about">
       {settings.image.enabled ? (
         <div className="Picture">
-          <img src={imageSrc} alt={imageAlt} style={imageStyle} />
+          <img
+            src={imageSrc}
+            alt={imageAlt}
+            style={imageStyle}
+            onError={(e: React.SyntheticEvent<HTMLImageElement>): void => {
+              if (e.currentTarget.src !== myPicture) {
+                e.currentTarget.src = myPicture;
+              }
+            }}
+          />
         </div>
       ) : null}
       <div className="Text">
         <h1>{heading}</h1>
         <p>{tagline}</p>
         <p>
-          {body.split("\n").map((line, idx) => (
+          {body.split("\n").map((line: string, idx: number): React.JSX.Element => (
             <React.Fragment key={idx}>
               {idx === 0 ? null : <br />}
               {line}
@@ -120,6 +128,6 @@ function About() {
       </div>
     </div>
   );
-}
+};
 
 export default About;
