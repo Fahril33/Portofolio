@@ -1,7 +1,7 @@
 const particlesConfig: Record<string, unknown> = {
   particles: {
     number: {
-      value: 50,
+      value: 38,
       density: {
         enable: true,
         value_area: 800,
@@ -47,14 +47,14 @@ const particlesConfig: Record<string, unknown> = {
     },
     line_linked: {
       enable: true,
-      distance: 150,
+      distance: 140,
       color: "#ffffff",
       opacity: 0.3,
       width: 1,
     },
     move: {
       enable: true,
-      speed: 6,
+      speed: 3.5,
       direction: "none",
       random: false,
       straight: false,
@@ -82,20 +82,20 @@ const particlesConfig: Record<string, unknown> = {
     },
     modes: {
       grab: {
-        distance: 350,
+        distance: 180,
         line_linked: {
-          opacity: 0.8,
+          opacity: 0.75,
         },
       },
       bubble: {
-        distance: 400,
-        size: 40,
+        distance: 250,
+        size: 20,
         duration: 2,
         opacity: 8,
         speed: 3,
       },
       repulse: {
-        distance: 200,
+        distance: 150,
         duration: 0.4,
       },
       push: {
@@ -106,7 +106,7 @@ const particlesConfig: Record<string, unknown> = {
       },
     },
   },
-  retina_detect: true,
+  retina_detect: false,
 };
 
 export default particlesConfig;

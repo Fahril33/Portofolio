@@ -1,5 +1,13 @@
 .transition {
   height: auto;
+  background-color: #ffffff;
+  line-height: 0;
+  margin-top: -1px;
+}
+
+.transition svg {
+  display: block;
+  width: 100%;
 }
 
 .transitionFooter {

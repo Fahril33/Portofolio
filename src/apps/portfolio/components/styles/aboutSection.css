@@ -1,13 +1,3 @@
-@font-face {
-  font-family: "Poppins";
-  src: url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
-}
-
-@font-face {
-  font-family: "Montserrat";
-  src: url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap");
-}
-
 .aboutSectionContainer {
   font-family: "Poppins", sans-serif;
   height: auto;

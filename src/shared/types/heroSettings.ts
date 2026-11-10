@@ -56,7 +56,7 @@ export const defaultHeroSettingsConfig = (): HeroSettingsConfig => ({
     enabled: true,
   },
   heroImage: {
-    enabled: true,
+    enabled: false,
     position: "left",
     source: "url",
     url: "",

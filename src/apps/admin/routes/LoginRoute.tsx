@@ -1,30 +1,34 @@
 import React, { useState } from "react";
-import { navigateTo } from "../../../lib/navigation";
+import { navigateTo, navigateWithSlide } from "../../../lib/navigation";
 import { useAuth } from "../lib/auth";
 import LoginPage from "../pages/LoginPage";
 
-const LoginRoute: React.FC = () => {
+export default function LoginRoute(): React.JSX.Element | null {
   const auth = useAuth();
-  const [busy, setBusy] = useState(false);
+  const [busy, setBusy] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
-  React.useEffect(() => {
+  React.useEffect((): void => {
     if (auth.status === "admin") {
       navigateTo("/lead");
     }
   }, [auth.status]);
 
-  const onLogin = async (email: string, password: string) => {
+  const handleLoginSubmit = async (email: string, password: string): Promise<void> => {
     setError(null);
     setBusy(true);
     try {
       await auth.login(email, password);
       navigateTo("/lead");
-    } catch (e) {
+    } catch (e: unknown) {
       setError(e instanceof Error ? e.message : "Login gagal.");
     } finally {
       setBusy(false);
     }
+  };
+
+  const handleBackToPortfolio = (): void => {
+    navigateWithSlide("/", "backward");
   };
 
   if (auth.status === "loading" && !busy) {
@@ -43,10 +47,8 @@ const LoginRoute: React.FC = () => {
       missingEnv={auth.envMissing}
       busy={busy}
       error={error}
-      onLogin={onLogin}
-      onBack={() => navigateTo("/")}
+      onLogin={handleLoginSubmit}
+      onBack={handleBackToPortfolio}
     />
   );
-};
-
-export default LoginRoute;
+}

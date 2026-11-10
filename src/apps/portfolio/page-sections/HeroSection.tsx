@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
-import particlesConfig from "../components/configs/particles-config"; // tetap pakai konfigurasi
 import "../components/styles/heroSection.css";
 import finjakebmo from "../assets/AdventurTime.png";
 import { InfoAlert } from "../components/SweetAlert";
 import { isSupabaseConfigured, storagePublicUrl, supabaseGet } from "../../../lib/supabaseRest";
 import TypewriterText from "../components/TypewriterText";
+import { useParticles } from "../../../shared/hooks/useParticles";
 import {
   defaultHeroSettingsConfig,
   normalizeHeroSettingsConfig,
@@ -88,27 +88,7 @@ function Hero() {
     sessionStorage.setItem(key, "1");
   }, [remote?.welcome_text, remote?.welcome_title, settings.welcomeAlert.enabled]);
 
-  useEffect(() => {
-    let cancelled = false;
-    let frames = 0;
-    const maxFrames = 60 * 5; // ~5s
-
-    const tryInit = () => {
-      if (cancelled) return;
-      if (window.particlesJS) {
-        window.particlesJS("particles-js", particlesConfig);
-        return;
-      }
-
-      frames += 1;
-      if (frames < maxFrames) window.requestAnimationFrame(tryInit);
-    };
-
-    tryInit();
-    return () => {
-      cancelled = true;
-    };
-  }, []);
+  useParticles("particles-js");
 
   const resolvedImageAlt =
     settings.heroImage.alt?.trim() ||

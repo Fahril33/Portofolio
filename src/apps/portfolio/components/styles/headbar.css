@@ -1,9 +1,9 @@
 .navbar {
-  background-color: #1f2235;
+  background: transparent;
   color: #e35860;
   padding: 14px 10vw;
   display: flex;
-  flex-wrap: wrap;
+  align-items: center;
   justify-content: space-between;
   position: fixed;
   top: 0;
@@ -12,6 +12,51 @@
   z-index: 10;
   width: 100%;
   flex-wrap: nowrap;
+  border-bottom: 1px solid transparent;
+  backdrop-filter: blur(0px);
+  -webkit-backdrop-filter: blur(0px);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              padding 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              background 0.35s ease,
+              background-color 0.35s ease,
+              backdrop-filter 0.35s ease,
+              -webkit-backdrop-filter 0.35s ease,
+              box-shadow 0.35s ease,
+              border-color 0.35s ease;
+}
+
+/* Glassmorphism effect on hover when in hero section */
+.navbar:not(.compact):hover {
+  background: rgba(31, 34, 53, 0.55);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+}
+
+/* Compact topnav when outside hero section */
+.navbar.compact {
+  background-color: #1f2235;
+  padding: 2px 10vw;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Peeking tail when cursor is at the top viewport edge while hidden */
+.navbar.peeking {
+  border-bottom: 2px solid #e35860;
+  box-shadow: 0 4px 14px rgba(227, 88, 96, 0.5);
+  cursor: pointer;
+}
+
+.navbar .DropdownNav {
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-origin: left center;
+}
+
+/* Scale down icon/brand when in compact mode */
+.navbar.compact .DropdownNav {
+  transform: scale(0.72);
 }
 
 .navbar p {
@@ -53,23 +98,23 @@
   transition-delay: 0s !important;
 }
 
-.navbar p:not(.launching):hover .char-1 {
+.navbar p:not(.launching):not(.entering-from-login):hover .char-1 {
   transform: translateY(-3px);
   transition-delay: 0s;
 }
 
-.navbar p:not(.launching):hover .char-2 {
+.navbar p:not(.launching):not(.entering-from-login):hover .char-2 {
   transform: translateY(-3px);
   transition-delay: 0.05s;
 }
 
-.navbar p:not(.launching):hover .char-3 {
+.navbar p:not(.launching):not(.entering-from-login):hover .char-3 {
   transform: translateY(-3px);
   transition-delay: 0.1s;
 }
 
 /* bounce effect p clicked */
-.navbar p:not(.launching):active {
+.navbar p:not(.launching):not(.entering-from-login):active {
   transform: scale(0.9);
   transition: all 0.1s ease;
 }
@@ -117,6 +162,162 @@
   }
 }
 
+/* Entrance animation: in-animation slide from the left */
+.DropdownNav.entering-from-login .char-1 {
+  animation: slideInFromLogin 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.05s both;
+}
+
+.DropdownNav.entering-from-login .char-2 {
+  animation: slideInFromLogin 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.16s both;
+}
+
+.DropdownNav.entering-from-login .char-3 {
+  animation: slideInFromLogin 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.27s both;
+}
+
+@keyframes slideInFromLogin {
+  0% {
+    transform: translateX(-100vw);
+    color: rgb(227, 88, 96);
+    opacity: 0;
+  }
+  6% {
+    opacity: 1;
+  }
+  75% {
+    transform: translateX(8px);
+    color: rgb(227, 88, 96);
+  }
+  100% {
+    transform: translateX(0);
+    color: #fffbfb;
+    opacity: 1;
+  }
+}
+
+/* Keep brand icon hidden inside temporary overlay while page is sliding */
+.page-slide-overlay .DropdownNav .logo-char,
+.page-slide-overlay .DropdownNav .word-char {
+  opacity: 0 !important;
+}
+
+/* Dynamic Slot next to '/' */
+.logo-dyn-slot {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  vertical-align: middle;
+  line-height: 1;
+}
+
+/* Clip characters passing into '/' on the left while keeping right unclipped */
+.DropdownNav:not(.launching):not(.entering-from-login) .logo-dyn-slot {
+  clip-path: inset(-15px -300px -15px 0px);
+  -webkit-clip-path: inset(-15px -300px -15px 0px);
+}
+
+.DropdownNav.launching .logo-dyn-slot,
+.DropdownNav.entering-from-login .logo-dyn-slot {
+  clip-path: none;
+  -webkit-clip-path: none;
+}
+
+/* Base style for characters in dynamic words */
+.word-char {
+  display: inline-block;
+  color: #fffbfb;
+  will-change: transform, opacity;
+  line-height: 1;
+}
+
+/* 1. '>' enters into '/' (slides left and vanishes at slash edge) */
+.char-3.slide-into-slash {
+  animation: gtSlideIntoSlash 0.35s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* 2. '>' returns into view emerging out of '/' */
+.char-3.slide-out-slash {
+  animation: gtSlideOutOfSlash 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes gtSlideIntoSlash {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-40px);
+    opacity: 0;
+  }
+}
+
+@keyframes gtSlideOutOfSlash {
+  0% {
+    transform: translateX(-35px);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* 3. Word characters emerging out of '/' from rightmost to leftmost */
+.word-char.emerge {
+  animation: wordCharEmerge 0.42s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes wordCharEmerge {
+  0% {
+    transform: translateX(var(--emerge-x, -50px));
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* 4. Word characters sliding left into '/' chasing each other */
+.word-char.dive {
+  animation: wordCharDive 0.48s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+@keyframes wordCharDive {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  70% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateX(-160px);
+    opacity: 0;
+  }
+}
+
+/* 5. Fast dive on first logo click to restore original form </> quickly */
+.word-char.fast-dive {
+  animation: wordCharFastDive 0.12s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+@keyframes wordCharFastDive {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-160px);
+    opacity: 0;
+  }
+}
+
 
 
 
@@ -126,6 +327,11 @@
   gap: 20px;
   justify-content: flex-end;
   align-items: center;
+  transition: gap 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.navbar.compact ul {
+  gap: 14px;
 }
 
 .navbar ul li {
@@ -133,6 +339,10 @@
   font-weight: 500;
   cursor: pointer;
   transition: all 0.3s ease;
+}
+
+.navbar.compact ul li {
+  font-size: 0.85rem;
 }
 
 .navbar ul li:hover {
@@ -169,6 +379,9 @@
     transition: all 0.3s ease;
     overflow: hidden;
   }
+  .navbar.compact {
+    padding: 3px 15px;
+  }
   .navbar p {
     font-size: 1.6rem;
     transform: translateX(-25px);
@@ -190,6 +403,9 @@
     padding: 20px 15px;
     transition: all 0.3s ease;
   }
+  .navbar.compact {
+    padding: 3px 15px;
+  }
   .navbar p {
     font-size: 1.6rem;
     transition: all 0.3s ease;
@@ -208,5 +424,8 @@
     flex-direction: row;
     justify-content: space-between;
     padding: 20px 10px;
+  }
+  .navbar.compact {
+    padding: 3px 10px;
   }
 }

@@ -14,7 +14,7 @@ const PortfolioApp: React.FC = () => {
     <div style={{ width: "100%" }}>
       <Headbar />
       <HeroSection />
-      <TransitionHero firstcolor="#1f2235" />
+      <TransitionHero firstcolor="#0e101f" />
       <AboutSection />
       <ProjectsSection />
       <CurrentSection />
