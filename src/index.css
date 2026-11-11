@@ -19,6 +19,22 @@ body {
   overflow-x: hidden;
 }
 
+/* ── Particles Smooth Fade-In ── */
+.particles-js-canvas-el {
+  opacity: 0;
+  animation: particlesFadeIn 1.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  will-change: opacity;
+}
+
+@keyframes particlesFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 /* ── Page Slide Transition Overlay ── */
 .page-slide-overlay {
   position: fixed;

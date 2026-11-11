@@ -1,17 +1,41 @@
 import { useEffect } from "react";
 import particlesConfig from "../../apps/portfolio/components/configs/particles-config";
 
-export interface ParticlesDomItem {
-  pJS?: {
-    canvas?: {
-      tag_id?: string;
-      el?: HTMLCanvasElement;
-    };
-    fn?: {
-      draw?: () => void;
-      drawAnimFrame?: number | null;
-    };
+export interface ParticlesCanvas {
+  tag_id?: string;
+  el?: HTMLCanvasElement;
+  w?: number;
+  h?: number;
+}
+
+export interface ParticlesFunctions {
+  draw?: () => void;
+  drawAnimFrame?: number | null;
+  checkAnimFrame?: number | null;
+  particlesRefresh?: () => void;
+  vendors?: {
+    drawAnimFrame?: number | null;
+    checkAnimFrame?: number | null;
+    destroypJS?: () => void;
   };
+}
+
+export interface ParticlesState {
+  array?: unknown[];
+}
+
+export interface ParticleJSInstance {
+  tag_id?: string;
+  canvas?: ParticlesCanvas;
+  particles?: ParticlesState;
+  fn?: ParticlesFunctions;
+  tmp?: {
+    checkAnimFrame?: number | null;
+  };
+}
+
+export interface ParticlesDomItem {
+  pJS?: ParticleJSInstance;
 }
 
 export interface WindowWithParticles extends Window {
@@ -26,25 +50,43 @@ export const useParticles = (containerId: string): void => {
     let frames = 0;
     const maxFrames = 60 * 5; // ~5s timeout
 
-    const cleanupInstance = (): void => {
+    const cleanupInstance = (tag: string): void => {
       if (typeof window === "undefined") return;
-      const win = window as WindowWithParticles;
+      const win = window as unknown as WindowWithParticles;
       if (!Array.isArray(win.pJSDom)) return;
 
       for (let i = win.pJSDom.length - 1; i >= 0; i -= 1) {
         const entry = win.pJSDom[i];
-        const isMatch =
-          entry?.pJS?.canvas?.tag_id === containerId ||
-          entry?.pJS?.canvas?.el?.parentElement?.id === containerId;
+        const canvasEl = entry?.pJS?.canvas?.el;
+        const isDetached = Boolean(canvasEl && !canvasEl.isConnected);
+        const isTagMatch =
+          entry?.pJS?.tag_id === tag ||
+          entry?.pJS?.canvas?.tag_id === tag ||
+          canvasEl?.parentElement?.id === tag;
 
-        if (isMatch) {
+        if (isTagMatch || isDetached) {
           if (entry?.pJS?.fn?.drawAnimFrame != null) {
             cancelAnimationFrame(entry.pJS.fn.drawAnimFrame);
             entry.pJS.fn.drawAnimFrame = null;
           }
-          entry?.pJS?.canvas?.el?.remove();
+          if (entry?.pJS?.fn?.checkAnimFrame != null) {
+            cancelAnimationFrame(entry.pJS.fn.checkAnimFrame);
+            entry.pJS.fn.checkAnimFrame = null;
+          }
+          if (entry?.pJS?.tmp?.checkAnimFrame != null) {
+            cancelAnimationFrame(entry.pJS.tmp.checkAnimFrame);
+            entry.pJS.tmp.checkAnimFrame = null;
+          }
+          canvasEl?.remove();
           win.pJSDom.splice(i, 1);
         }
+      }
+    };
+
+    const scheduleNextFrame = (): void => {
+      frames += 1;
+      if (frames < maxFrames && !cancelled) {
+        animId = window.requestAnimationFrame(tryInit);
       }
     };
 
@@ -53,31 +95,69 @@ export const useParticles = (containerId: string): void => {
       if (typeof window === "undefined") return;
 
       const container = document.getElementById(containerId);
-      // Skip initialization if inside the temporary slide transition overlay
-      if (container?.closest(".page-slide-overlay")) {
+      // If container is not yet mounted or is detached, wait for next animation frame
+      if (!container || !container.isConnected) {
+        scheduleNextFrame();
         return;
       }
 
-      const win = window as WindowWithParticles;
-      if (container && win.particlesJS) {
-        if (!Array.isArray(win.pJSDom)) {
-          win.pJSDom = [];
+      // If container is within slide transition overlay, wait until transition completes
+      if (container.closest(".page-slide-overlay")) {
+        scheduleNextFrame();
+        return;
+      }
+
+      // Ensure container has non-zero geometry to prevent densityAutoParticles from removing all particles
+      if (container.offsetWidth <= 0 || container.offsetHeight <= 0) {
+        scheduleNextFrame();
+        return;
+      }
+
+      const win = window as unknown as WindowWithParticles;
+      if (typeof win.particlesJS !== "function") {
+        scheduleNextFrame();
+        return;
+      }
+
+      if (!Array.isArray(win.pJSDom)) {
+        win.pJSDom = [];
+      }
+
+      // Clean up stale instances for this container or detached canvases
+      cleanupInstance(containerId);
+      container.innerHTML = "";
+
+      // Spawn fresh particles
+      win.particlesJS(containerId, particlesConfig);
+
+      // Tag the newly created instance for unambiguous teardown
+      const created = win.pJSDom[win.pJSDom.length - 1];
+      if (created?.pJS) {
+        created.pJS.tag_id = containerId;
+        if (created.pJS.canvas) {
+          created.pJS.canvas.tag_id = containerId;
+          created.pJS.canvas.el?.classList.add("particles-fade-in");
         }
 
-        // Clean up any stale instances for this container so objects always spawn fresh from 0
-        cleanupInstance();
-        container.innerHTML = "";
-
-        // Fresh particles spawn from 0
-        win.particlesJS(containerId, particlesConfig);
-        return;
-      }
-
-      frames += 1;
-      if (frames < maxFrames) {
-        animId = window.requestAnimationFrame(tryInit);
+        // If particles array was emptied due to momentary zero-size during spawn, refresh particles
+        if (
+          Array.isArray(created.pJS.particles?.array) &&
+          created.pJS.particles.array.length === 0 &&
+          typeof created.pJS.fn?.particlesRefresh === "function"
+        ) {
+          created.pJS.fn.particlesRefresh();
+        }
       }
     };
+
+    const handleReInit = (): void => {
+      frames = 0;
+      tryInit();
+    };
+
+    window.addEventListener("page-slide-end", handleReInit);
+    window.addEventListener("portfolio-return-from-login", handleReInit);
+    window.addEventListener("popstate", handleReInit);
 
     tryInit();
 
@@ -86,7 +166,10 @@ export const useParticles = (containerId: string): void => {
       if (animId != null) {
         window.cancelAnimationFrame(animId);
       }
-      cleanupInstance();
+      window.removeEventListener("page-slide-end", handleReInit);
+      window.removeEventListener("portfolio-return-from-login", handleReInit);
+      window.removeEventListener("popstate", handleReInit);
+      cleanupInstance(containerId);
     };
   }, [containerId]);
 };

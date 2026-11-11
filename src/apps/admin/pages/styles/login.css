@@ -37,6 +37,8 @@
   display: block;
   width: 100% !important;
   height: 100% !important;
+  opacity: 0;
+  animation: particlesFadeIn 1.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 .authCard {

@@ -116,6 +116,8 @@
   width: 100% !important;
   height: 100% !important;
   pointer-events: auto;
+  opacity: 0;
+  animation: particlesFadeIn 1.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 @media (max-width: 768.9px) {
