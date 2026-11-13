@@ -13,8 +13,8 @@
   height: 100vh;
   overflow: hidden;
   background:
-    linear-gradient(to bottom, transparent 60%, #0e101f 100%),
-    radial-gradient(1200px 700px at 50% 10%, #252a42 0%, #1a1c2d 50%, #0e101f 100%);
+    linear-gradient(to bottom, transparent 60%, var(--portfolio-hero-surface, #0e101f) 100%),
+    radial-gradient(1200px 700px at 50% 10%, #252a42 0%, #1a1c2d 50%, var(--portfolio-hero-surface, #0e101f) 100%);
   font-family: "Poppins-Adjusted", sans-serif;
   user-select: none;
   -webkit-user-drag: none;
@@ -81,8 +81,9 @@
 }
 
 .name {
+  font-family: "Poppins", "Poppins-Adjusted", sans-serif;
   font-size: 120px;
-  font-weight: 800;
+  font-weight: 600;
   transition: all 0.3s ease;
   letter-spacing: 10px;
   /* min-height: 1.2em; Prevent layout collapse */
@@ -109,6 +110,9 @@
   height: 100%;
   z-index: 2;
   pointer-events: auto;
+  /* Let the particle texture dissolve into the shared transition surface. */
+  -webkit-mask-image: linear-gradient(to bottom, #000 75%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 75%, transparent 100%);
 }
 
 #particles-js canvas {
@@ -188,6 +192,8 @@
   text-align: center;
   letter-spacing: 0.02em;
   transition: none;
+  font-family: "Poppins", "Poppins-Adjusted", sans-serif;
+  font-weight: 600;
 }
 
 .typewriter .typewriterStage {
@@ -208,6 +214,8 @@
   min-width: 0;
   max-width: none;
   white-space: pre;
+  font-weight: 600;
+  text-rendering: optimizeLegibility;
 }
 
 .typewriterAccessible {

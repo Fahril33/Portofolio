@@ -10,7 +10,7 @@ import { NavMenuList } from "./NavMenuList";
 import { useLogoWordCycle } from "../hooks/useLogoWordCycle";
 import { useHeadbarScroll } from "../hooks/useHeadbarScroll";
 
-const Headbar: React.FC = () => {
+const Headbar: React.FC = (): React.JSX.Element => {
   const { show, activeSection, scrollToSection } = useHeadbarScroll();
   const [isPeeking, setIsPeeking] = useState<boolean>(false);
   const [isNavHovered, setIsNavHovered] = useState<boolean>(false);
@@ -145,12 +145,12 @@ const Headbar: React.FC = () => {
   const navbarStyle: React.CSSProperties = {
     transform: transformValue,
     transition:
-      "transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), padding 0.35s cubic-bezier(0.16, 1, 0.3, 1), background 0.35s ease, background-color 0.35s ease, backdrop-filter 0.35s ease, -webkit-backdrop-filter 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease",
+      "transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), padding 0.35s cubic-bezier(0.16, 1, 0.3, 1), background 0.35s ease, background-color 0.35s ease, backdrop-filter 0.35s ease, -webkit-backdrop-filter 0.35s ease, box-shadow 0.35s ease",
   };
 
   return (
     <nav
-      className={`navbar ${isCompact ? "compact" : ""} ${isPeeking && !isVisible ? "peeking" : ""}`}
+      className={`navbar ${isCompact ? "compact" : ""} section-${activeSection} ${isPeeking && !isVisible ? "peeking" : ""}`}
       style={navbarStyle}
       onMouseEnter={handleNavMouseEnter}
       onMouseLeave={handleNavMouseLeave}

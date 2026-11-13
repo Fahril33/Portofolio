@@ -12,7 +12,7 @@
   z-index: 10;
   width: 100%;
   flex-wrap: nowrap;
-  border-bottom: 1px solid transparent;
+  border-bottom: none;
   backdrop-filter: blur(0px);
   -webkit-backdrop-filter: blur(0px);
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
@@ -21,17 +21,7 @@
               background-color 0.35s ease,
               backdrop-filter 0.35s ease,
               -webkit-backdrop-filter 0.35s ease,
-              box-shadow 0.35s ease,
-              border-color 0.35s ease;
-}
-
-/* Glassmorphism effect on hover when in hero section */
-.navbar:not(.compact):hover {
-  background: rgba(31, 34, 53, 0.55);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+              box-shadow 0.35s ease;
 }
 
 /* Compact topnav when outside hero section */
@@ -39,7 +29,28 @@
   background-color: #1f2235;
   padding: 2px 10vw;
   box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: none;
+}
+
+/* In about section, topnav retains its compact size but matches hero section background behavior */
+.navbar.compact.section-about:not(.peeking):not(:hover) {
+  background: transparent;
+  background-color: transparent;
+  box-shadow: none;
+  border-bottom: none;
+  backdrop-filter: blur(0px);
+  -webkit-backdrop-filter: blur(0px);
+}
+
+/* Glassmorphism effect on hover when in hero section or about section */
+.navbar:not(.compact):hover,
+.navbar.compact.section-about:hover {
+  background: rgba(31, 34, 53, 0.55);
+  background-color: rgba(31, 34, 53, 0.55);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: none;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
 }
 
 /* Peeking tail when cursor is at the top viewport edge while hidden */
@@ -324,50 +335,77 @@
 .navbar ul {
   list-style: none;
   display: flex;
-  gap: 20px;
+  gap: 14px;
   justify-content: flex-end;
   align-items: center;
+  align-self: stretch;
+  margin: 0;
+  padding: 0;
   transition: gap 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .navbar.compact ul {
-  gap: 14px;
+  gap: 10px;
 }
 
 .navbar ul li {
+  position: relative;
   font-size: 1rem;
   font-weight: 500;
   cursor: pointer;
-  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-self: stretch;
+  transition: color 0.3s ease;
 }
 
 .navbar.compact ul li {
   font-size: 0.85rem;
 }
 
-.navbar ul li:hover {
-  color: #fffbfb;
-  transform: scale(1.1);
-  font-weight: bold;
-  transition: all 0.3s ease;
-}
-
 .navbar ul li a {
+  position: relative;
   color: #e35860;
   text-decoration: none;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 6px;
+  border-radius: 6px;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  transition: color 0.25s ease, transform 0.25s ease;
+}
+
+.navbar.compact ul li a {
+  padding: 2px 4px;
+}
+
+/* Expanded invisible hit area extending above and below the link without affecting topnav height */
+.navbar ul li a::before {
+  content: "";
+  position: absolute;
+  top: -14px;
+  bottom: -14px;
+  left: -4px;
+  right: -4px;
+  cursor: pointer;
+}
+
+.navbar.compact ul li a::before {
+  top: -6px;
+  bottom: -6px;
+  left: -3px;
+  right: -3px;
 }
 
 .navbar ul li.active a,
 .navbar ul li:hover a {
   color: #fffbfb;
-}
-
-.navbar ul li a:hover {
-  color: #fffbfb;
   transform: scale(1.1);
   font-weight: bold;
-  transition: all 0.3s ease;
 }
 
 @media (max-width: 375.9px) {

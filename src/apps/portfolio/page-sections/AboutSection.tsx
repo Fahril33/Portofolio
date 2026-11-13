@@ -1,130 +1,113 @@
-import React, { useEffect, useState } from "react";
+import React, { useId, useRef } from "react";
 import "../components/styles/aboutSection.css";
-import myPicture from "./../assets/myPict.png";
-import { isSupabaseConfigured, storagePublicUrl, supabaseGet } from "../../../lib/supabaseRest";
-import {
-  defaultAboutSettingsConfig,
-  normalizeAboutSettingsConfig,
-  type AboutSettingsConfig,
-} from "../../../shared/types/aboutSettings";
+import AboutProfile from "../components/AboutProfile";
+import { useAboutKinetic } from "../hooks/useAboutKinetic";
 
-export interface AboutRow {
-  id: number;
-  heading: string | null;
-  tagline: string | null;
-  body: string | null;
-  image_url: string | null;
-  image_alt: string | null;
-}
+const phases = [
+  {
+    world: "THE POSSIBILITY",
+    description:
+      "A rotating organic form with a purple neural network and flowing signals.",
+  },
+  {
+    world: "THE INTENTION",
+    description:
+      "A rotating geometric form with colorful brushstrokes and fading paint splashes.",
+  },
+  {
+    world: "THE REALITY",
+    description: "A rotating geometric wireframe with green streams of data.",
+  },
+  {
+    world: "THE WHOLE PICTURE",
+    description:
+      "Imagine, Design, Code come together with neural connections, paint, and a wireframe in one form.",
+  },
+] as const;
 
 const About: React.FC = (): React.JSX.Element => {
-  const [remote, setRemote] = useState<AboutRow | null>(null);
-  const [settings, setSettings] = useState<AboutSettingsConfig>((): AboutSettingsConfig =>
-    defaultAboutSettingsConfig()
-  );
-
-  useEffect((): (() => void) => {
-    if (!isSupabaseConfigured()) return (): void => {};
-
-    let cancelled = false;
-    const load = async (): Promise<void> => {
-      try {
-        const rows = await supabaseGet<AboutRow[]>("about_section", "id=eq.1", {
-          select: "*",
-        });
-        if (cancelled) return;
-        setRemote(rows[0] ?? null);
-      } catch {
-        // fallback to local content
-      }
-    };
-
-    void load();
-    return (): void => {
-      cancelled = true;
-    };
-  }, []);
-
-  useEffect((): (() => void) => {
-    if (!isSupabaseConfigured()) return (): void => {};
-
-    let cancelled = false;
-    const load = async (): Promise<void> => {
-      try {
-        const rows = await supabaseGet<Array<{ app: string; namespace: string; config: unknown }>>(
-          "app_configs",
-          "app=eq.portfolio&namespace=eq.about",
-          { select: "app,namespace,config" }
-        );
-        if (cancelled) return;
-        setSettings(normalizeAboutSettingsConfig(rows[0]?.config ?? null));
-      } catch {
-        // fallback
-      }
-    };
-
-    void load();
-    return (): void => {
-      cancelled = true;
-    };
-  }, []);
-
-  const heading = remote?.heading ?? "About Me";
-  const tagline = remote?.tagline ?? '"Imagine, Design, Code."';
-  const body =
-    remote?.body ??
-    "I'm a Junior FullStack Web Developer with a passion for creating innovative and user-friendly applications.\nMy goal is to combine creativity and technology to create impactful digital experiences.";
-
-  const legacyUrl = remote?.image_url?.trim() ? remote.image_url : "";
-  const legacyAlt = remote?.image_alt?.trim() ? remote.image_alt : "Portrait";
-
-  const storageUrl =
-    settings.image.source === "storage" &&
-    settings.image.storage.bucket.trim() &&
-    settings.image.storage.path.trim()
-      ? storagePublicUrl(settings.image.storage.bucket, settings.image.storage.path)
-      : "";
-
-  const imageSrc =
-    settings.image.source === "storage"
-      ? storageUrl || settings.image.url.trim() || legacyUrl || myPicture
-      : settings.image.url.trim() || legacyUrl || myPicture;
-
-  const imageAlt = settings.image.alt.trim() || legacyAlt;
-
-  const imageStyle: React.CSSProperties = {
-    objectFit: settings.image.size.objectFit,
-    width: settings.image.size.widthPx ? `${settings.image.size.widthPx}px` : undefined,
-    height: settings.image.size.heightPx ? `${settings.image.size.heightPx}px` : undefined,
-  };
+  const rootRef = useRef<HTMLDivElement>(null);
+  const headingId = useId();
+  const { phase, form, together } = useAboutKinetic(rootRef);
+  const currentPhase = phases[phase];
 
   return (
-    <div className="aboutSectionContainer" id="about">
-      {settings.image.enabled ? (
-        <div className="Picture">
-          <img
-            src={imageSrc}
-            alt={imageAlt}
-            style={imageStyle}
-            onError={(e: React.SyntheticEvent<HTMLImageElement>): void => {
-              if (e.currentTarget.src !== myPicture) {
-                e.currentTarget.src = myPicture;
-              }
-            }}
-          />
-        </div>
-      ) : null}
-      <div className="Text">
-        <h1>{heading}</h1>
-        <p>{tagline}</p>
-        <p>
-          {body.split("\n").map((line: string, idx: number): React.JSX.Element => (
-            <React.Fragment key={idx}>
-              {idx === 0 ? null : <br />}
-              {line}
-            </React.Fragment>
-          ))}
-        </p>
+    <div className="aboutSectionContainer" id="about" ref={rootRef} data-scroll-driven data-form={form} data-together={together}>
+      <div className="aboutSticky">
+        <section
+          className="idc-shell"
+          data-phase={phase}
+          aria-labelledby={headingId}
+        >
+          <h2 className="idc-screenreader" id={headingId}>
+            About Me — Imagine, Design, Code
+          </h2>
+          <div
+            className="idc-stage"
+            role="group"
+            aria-label="Imagine, Design, Code. Scroll down to advance, scroll up to go back."
+          >
+            <div className="idc-atmosphere" aria-hidden="true">
+              <div className="idc-haze dream" />
+              <div className="idc-haze form" />
+              <div className="idc-haze logic" />
+            </div>
+            <canvas aria-hidden="true" />
+            <AboutProfile form={form} visible={phase === 3} />
+            <button
+              type="button"
+              className="idc-object-control"
+              disabled={!together}
+              aria-label={`Rotate ${["Imagine", "Design", "Code", "Together"][form]} object with arrow keys or drag. Click or press Enter to change form.`}
+            />
+            <p className="idc-object-hint" aria-hidden="true">DRAG TO ROTATE <span>·</span> CLICK TO TRANSFORM</p>
+            <div className="idc-coordinate" aria-hidden="true">
+              <span className="idc-index">
+                {String(phase + 1).padStart(2, "0")}
+              </span>
+              <span className="idc-world">{currentPhase.world}</span>
+            </div>
+            <p className="idc-word idc-imagine" aria-hidden="true">
+              Imagine
+              <span className="idc-accent" />
+            </p>
+            <p className="idc-word idc-design" aria-hidden="true">
+              DESIGN
+              <span className="idc-accent" />
+            </p>
+            <p className="idc-word idc-code" aria-hidden="true">
+              <span className="idc-punctuation">&lt;</span>
+              Code
+              <span className="idc-punctuation">/&gt;</span>
+              <span className="idc-accent" />
+            </p>
+            <div className="idc-blueprint" aria-hidden="true">
+              <div className="idc-bound">
+                <span className="idc-handle" />
+                <span className="idc-handle" />
+                <span className="idc-handle" />
+                <span className="idc-handle" />
+                <span className="idc-bound-label">
+                  FORM / PROPORTION / INTENT
+                </span>
+              </div>
+            </div>
+            <pre className="idc-snippet" aria-hidden="true">
+              <span className="idc-green">const</span>
+              {" idea = imagine();\n"}
+              <span className="idc-green">const</span>
+              {" form = design(idea);\n"}
+              <span className="idc-green">await</span>
+              {" build(form);"}
+            </pre>
+          </div>
+          <p className="idc-screenreader">{(together ? phases[form] : currentPhase).description}</p>
+          <div className="idc-palette" aria-hidden="true">
+            {Array.from({ length: 9 }, (_, index) => (
+              <span key={index} />
+            ))}
+          </div>
+        </section>
       </div>
     </div>
   );

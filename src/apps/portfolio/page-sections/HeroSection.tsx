@@ -5,6 +5,7 @@ import { InfoAlert } from "../components/SweetAlert";
 import { isSupabaseConfigured, storagePublicUrl, supabaseGet } from "../../../lib/supabaseRest";
 import TypewriterText from "../components/TypewriterText";
 import { useParticles } from "../../../shared/hooks/useParticles";
+import { preloadAboutImage } from "../lib/aboutImagePreload";
 import {
   defaultHeroSettingsConfig,
   normalizeHeroSettingsConfig,
@@ -21,11 +22,15 @@ type HeroRow = {
   hero_image_alt: string | null;
 };
 
-function Hero() {
+function Hero(): React.JSX.Element {
   const [remote, setRemote] = React.useState<HeroRow | null>(null);
   const [settings, setSettings] = React.useState<HeroSettingsConfig>(() =>
     defaultHeroSettingsConfig()
   );
+
+  useEffect((): void => {
+    void preloadAboutImage();
+  }, []);
 
   useEffect(() => {
     if (!isSupabaseConfigured()) return;

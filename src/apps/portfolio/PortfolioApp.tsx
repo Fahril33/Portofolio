@@ -1,6 +1,7 @@
 import React from "react";
+import "./components/styles/sectionSurfaces.css";
 import Headbar from "./components/headbar";
-import { TransitionFooter, TransitionHero } from "./components/transition";
+import { TransitionFooter } from "./components/transition";
 import AboutSection from "./page-sections/AboutSection";
 import ContactSection from "./page-sections/ContactSection";
 import CurrentSection from "./page-sections/CurrentSection";
@@ -11,10 +12,9 @@ import ProjectsSection from "./page-sections/ProjectSections";
 
 const PortfolioApp: React.FC = () => {
   return (
-    <div style={{ width: "100%" }}>
+    <div className="portfolio-app">
       <Headbar />
       <HeroSection />
-      <TransitionHero firstcolor="#0e101f" />
       <AboutSection />
       <ProjectsSection />
       <CurrentSection />

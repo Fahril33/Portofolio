@@ -1,0 +1,6 @@
+/* Hero and About form one continuous dark surface in either system theme. */
+.portfolio-app {
+  --portfolio-hero-surface: #0e101f;
+  --portfolio-about-surface: var(--portfolio-hero-surface);
+  width: 100%;
+}

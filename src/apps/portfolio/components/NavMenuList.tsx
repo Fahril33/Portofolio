@@ -10,6 +10,19 @@ export const NavMenuList: React.FC<NavMenuListProps> = ({
   activeSection,
   onSelectSection,
 }: NavMenuListProps): React.JSX.Element => {
+  const handleItemClick = (id: SectionId): void => {
+    onSelectSection(id);
+  };
+
+  const handleLinkClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    id: SectionId
+  ): void => {
+    e.preventDefault();
+    e.stopPropagation();
+    onSelectSection(id);
+  };
+
   return (
     <ul>
       {SECTION_IDS.map((id) => (
@@ -17,13 +30,13 @@ export const NavMenuList: React.FC<NavMenuListProps> = ({
           key={id}
           className={activeSection === id ? "active" : ""}
           aria-current={activeSection === id ? "page" : undefined}
+          onClick={(): void => handleItemClick(id)}
         >
           <a
             href={`#${id}`}
-            onClick={(e: React.MouseEvent<HTMLAnchorElement>): void => {
-              e.preventDefault();
-              onSelectSection(id);
-            }}
+            onClick={(e: React.MouseEvent<HTMLAnchorElement>): void =>
+              handleLinkClick(e, id)
+            }
           >
             {NAV_LABELS[id]}
           </a>
@@ -32,4 +45,3 @@ export const NavMenuList: React.FC<NavMenuListProps> = ({
     </ul>
   );
 };
-

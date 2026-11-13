@@ -5,16 +5,58 @@ type TransitionProps = {
   firstcolor: string;
 };
 
-function TransitionHero({ firstcolor }: TransitionProps) {
+type HeroTransitionProps = {
+  firstcolor?: string;
+  secondcolor?: string;
+  /** Any CSS length, including clamp(), for responsive depth. */
+  height?: string;
+  /** Wave depth as a fraction of the transition height (0–0.3). */
+  amplitude?: number;
+  /** Number of wave cycles across the viewport (0.5–4). */
+  waves?: number;
+  /** Horizontal phase offset, in radians. */
+  phase?: number;
+};
+
+type TransitionStyle = React.CSSProperties & {
+  "--transition-from"?: string;
+  "--transition-to"?: string;
+  "--transition-height"?: string;
+  "--transition-shape": string;
+};
+
+const bounded = (value: number, fallback: number, min: number, max: number): number =>
+  Math.min(max, Math.max(min, Number.isFinite(value) ? value : fallback));
+
+function TransitionHero({
+  firstcolor,
+  secondcolor,
+  height,
+  amplitude = 0.18,
+  waves = 1.5,
+  phase = 0.3,
+}: HeroTransitionProps) {
+  const depth = bounded(amplitude, 0.18, 0, 0.3);
+  const frequency = bounded(waves, 1.5, 0.5, 4);
+  const offset = Number.isFinite(phase) ? phase : 0.3;
+  // Percentage coordinates keep the same organic contour at every viewport width.
+  const edge = Array.from({ length: 161 }, (_, index) => {
+    const x = 1 - index / 160;
+    const angle = x * Math.PI * 2 * frequency + offset;
+    const y = 0.5 + depth * (Math.sin(angle) + 0.25 * Math.sin(angle * 2 + 0.8));
+    return `${(x * 100).toFixed(3)}% ${(y * 100).toFixed(3)}%`;
+  });
+  const style: TransitionStyle = {
+    "--transition-from": firstcolor,
+    "--transition-to": secondcolor,
+    "--transition-height": height,
+    "--transition-shape": `polygon(0 0, 100% 0, ${edge.join(", ")})`,
+  };
+
   return (
-    <div className="transition">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-        <path
-          fill={firstcolor}
-          fillOpacity="1"
-          d="M0,160L21.8,154.7C43.6,149,87,139,131,154.7C174.5,171,218,213,262,213.3C305.5,213,349,171,393,165.3C436.4,160,480,192,524,218.7C567.3,245,611,267,655,245.3C698.2,224,742,160,785,149.3C829.1,139,873,181,916,181.3C960,181,1004,139,1047,122.7C1090.9,107,1135,117,1178,138.7C1221.8,160,1265,192,1309,192C1352.7,192,1396,160,1418,144L1440,128L1440,0L1418.2,0C1396.4,0,1353,0,1309,0C1265.5,0,1222,0,1178,0C1134.5,0,1091,0,1047,0C1003.6,0,960,0,916,0C872.7,0,829,0,785,0C741.8,0,698,0,655,0C610.9,0,567,0,524,0C480,0,436,0,393,0C349.1,0,305,0,262,0C218.2,0,175,0,131,0C87.3,0,44,0,22,0L0,0Z"
-        />
-      </svg>
+    <div className="section-transition" style={style} aria-hidden="true">
+      <div className="section-transition__wash" />
+      <div className="section-transition__surface" />
     </div>
   );
 }

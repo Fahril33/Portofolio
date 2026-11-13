@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import type { TypewriterSettings } from "../../../shared/types/heroSettings";
 import { isReturningFromLoginActive } from "../../../lib/navigation";
-import { advanceTypewriter, getTypewriterDelay } from "./typewriterAnimation";
+import { advanceTypewriter, getNextSessionSpeed, getTypewriterDelay } from "./typewriterAnimation";
 import type { TypewriterFrame } from "./typewriterAnimation";
 
 export interface TypewriterResult {
@@ -27,7 +27,13 @@ export const useTypewriter = (settings: TypewriterSettings): TypewriterResult =>
   const [reducedMotion, setReducedMotion] = useState((): boolean =>
     window.matchMedia("(prefers-reduced-motion: reduce)").matches
   );
-  const [frame, setFrame] = useState<TypewriterFrame>({ textIndex: baseIndex, cursor: 0, phase: "starting" });
+  const [frame, setFrame] = useState<TypewriterFrame>((): TypewriterFrame => ({
+    textIndex: baseIndex,
+    cursor: 0,
+    phase: "starting",
+    cycle: 0,
+    sessionSpeed: getNextSessionSpeed(baseIndex, 0),
+  }));
 
   useEffect((): (() => void) => {
     const media = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -39,7 +45,13 @@ export const useTypewriter = (settings: TypewriterSettings): TypewriterResult =>
 
   const { enabled, rotate, loop, typingMs, deletingMs, pauseMs } = settings;
   useEffect((): (() => void) | undefined => {
-    const initial: TypewriterFrame = { textIndex: baseIndex, cursor: 0, phase: "starting" };
+    const initial: TypewriterFrame = {
+      textIndex: baseIndex,
+      cursor: 0,
+      phase: "starting",
+      cycle: 0,
+      sessionSpeed: getNextSessionSpeed(baseIndex, 0),
+    };
     setFrame(initial);
     if (!enabled || reducedMotion || phrases.length === 0) return;
 
